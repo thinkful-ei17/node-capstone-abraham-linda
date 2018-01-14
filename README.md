@@ -1,4 +1,164 @@
-# node-capstone-abraham-linda
+## Endpoints
+
+| Method | Endpoint | Description |
+|--|--|--|
+| GET | /item | Lists all items |
+| GET | /item/:id | Single item detail |
+| POST| /item | Creates a new item |
+| PUT | /item | Updates an item |
+| DELETE | /item/:id | Deletes an item |
+
+## Mock Objects
+
+```js
+item = {
+"name":'Lawn Mower',
+"image":'img.jpg',
+"type": 'Loan',
+"description":'Brand new Lawn mower sitting in my garage collecting dust. Now that I have astro-truf. Go ahead and borrow it if you need it! - Alice',
+"postedBy": 'Alice A.'
+"acceptedBy": 'Charlie C.'
+"status":'On Loan'
+};
+```
+
+> Note: Add Dropdown selecting populated by a STORE.users array which can be used to set STORE.currentUser and this can simulate interaction.
+
+```js
+const users = ['Alice', 'Bob','Charlie'];
+store = {
+  'currentUser': 'Alice A.'
+}
+```
+
+- A single item object lists the poster and user who purchased/claimed item
+- An endpoint should exist (or querystring) that allows for filtering 
+- An endpoint should exist (or querystring) that displays the postedBy for a single user
+- An endpoint should exist (or querystring) that displays the acceptedBy for a single user
+
+## TODO
+
+1. [ ] npm init
+2. [ ] install packages
+3. [ ] create server.js
+4. [ ] create config.js
+5. [ ] .env file for environment variables
+6. [ ] create item folder (for feature
+    - [ ] model.js
+    - [ ] router.js
+    - [ ] test.js
+7. [ ] create public folder with client-side js
+    - [ ] app.js
+    - [ ] index.html
+    - [ ] style.css
+    - [ ] api.js
+    - [ ] render.js
+    - [ ] handle.js
+
+#User Stories
+As a x I want to do y
+1. Sign-up for access (not building out for now)
+2. Log-in (not building out for now)
+3. upon first loading the app, I can see Resource Sharing listing (all)
+4. User - Post
+    1. User has create button, once clicked, change view to post creation (input - item, description, type)
+    2. User has submit button, once clicked, change view to main page, now can see new item added to top of the page
+    3. New Item has Delete button and Edit button on main page (only renders, if currentUser is the same as id of person who posted)
+        -forEach: render list if posted by user === current user, then you can render delete and edit button, api call to item/id with delete, api call to change view to post creation populated with posting info
+    4. Based on type of item:
+        1. SELL
+            a. Poster - "View Offer" button - see all comments people left between indiv posters/users (future)
+                - Also has "Edit" and "Delete" button
+            b. Viewer - "Make Offer" button - Add 1 way comment for now
+        2. LOAN 
+            a. Poster - View status, no button
+                 - Also has "Edit" and "Delete" button
+            b. Viewer - "Borrow" button - Once clicked, tied to ID and no other user can borrow
+            a/b. Both can click "Return button" which will clear out acceptedBy (null) and change status - reverts back to Loan buttons
+        3. FREE   
+            a. Poster - View status, no button
+                - Also has "Edit" and "Delete" button
+            b. Viewer - "Claim" button - Once clicked, tied to ID and no other user can claim
+
+# LOGIC
+"postedBy": 'Alice A.'
+"acceptedBy": 'Charlie C.'
+"type": 'Loan',
+"status":'On Loan'
+
+1. if Type = "Sell"
+IF status = "Make Offer" (Available)
+IF status = "Purchased" (No longer available)
+
+2. if Type = "Free"
+IF status = "Claim" (Available)
+IF status = "Claimed" (no longer available)
+
+3. If Type = "Loan"
+IF status = "Borrow" (Available)
+IF status = "On Loan" (no longer available)
+
+------
+For User Poster and Claimer - another button to "Return" (future build)
+
+
+#PSEUDO-CODE LOGIC
+
+To avoid postedBy and acceptedBy being the same user:
+Render function use array.filter(item.postedBy !== STORE.currentUser)  >>>drives all other buttons (incl "Return", except for "Edit", "Delete"
+array.filter(item.postedBy === STORE.currentUser) >>> get "Edit" and "Delete" includes "Return" button
+
+// item object
+
+switch(item.type){
+  case "Loan":
+    validStatuses = ["Borrow", "On Loan"] // renders text in button
+    if item.status = "Borrow", render button
+    if item.status = "On Loan", disable button
+  break;
+  case "Sell":
+    validStatuses = ["Make Offer", "Purchased"];
+    if item.status = "Make Offer", render button 
+    if item.status = "Purchased" disable button
+  break;
+  case "Free":
+    validStatuses = ["Claim","Claimed"];
+    if item.status === "claim" render a button to claim 
+    if item.status === "Claimed" disable button
+  break;
+}
+
+renderView()
+
+return `
+<div>
+if 
+<button disable name=${item.status}>${item.status}</button>
+</div>
+`
+
+
+MVP
+#Create a client
+?
+
+#Serve static files
++Profile image for each user (face)
++Image of resource sharing (icon)
++mock logo
+
+#Implement REST API w/CRUD operations
++User
+-New user signup - POST: /api/user
+-
+
+#Comprehensive Test for API layer
+
+#Use Continuous Integration
+
+
+
+    # node-capstone-abraham-linda
 
 Questions
 - best approach to start implementation 1) build working client with dummy data OR 2) build working API, then client (BACKEND FIRST!)
@@ -131,60 +291,3 @@ Location -
 +User to Group Selected communication
 +Community Manager to User communication
 +Community Manager to Group Selected communication
-
-## Endpoints
-
-| Method | Endpoint | Description |
-|--|--|--|
-| GET | /item | Lists all items |
-| GET | /item/:id | Single item detail |
-| POST| /item | Creates a new item |
-| PUT | /item | Updates an item |
-| DELETE | /item/:id | Deletes an item |
-
-## Mock Objects
-
-```js
-item = {
-"name":'Lawn Mower',
-"image":'img.jpg',
-"type": 'Loan',
-"description":'Brand new Lawn mower sitting in my garage collecting dust. Now that I have astro-truf. Go ahead and borrow it if you need it! - Alice',
-"postedBy": 'Alice A.'
-"acceptedBy": 'Charlie C.'
-"status":'On Loan'
-};
-```
-
-> Note: Add Dropdown selecting populated by a STORE.users array which can be used to set STORE.currentUser and this can simulate interaction.
-
-```js
-const users = ['Alice', 'Bob','Charlie'];
-store = {
-  'currentUser': 'Alice A.'
-}
-```
-
-- A single item object lists the poster and user who purchased/claimed item
-- An endpoint should exist (or querystring) that allows for filtering 
-- An endpoint should exist (or querystring) that displays the postedBy for a single user
-- An endpoint should exist (or querystring) that displays the acceptedBy for a single user
-
-## TODO
-
-1. [ ] npm init
-2. [ ] install packages
-3. [ ] create server.js
-4. [ ] create config.js
-5. [ ] .env file for environment variables
-6. [ ] create item folder (for feature
-    - [ ] model.js
-    - [ ] router.js
-    - [ ] test.js
-7. [ ] create public folder with client-side js
-    - [ ] app.js
-    - [ ] index.html
-    - [ ] style.css
-    - [ ] api.js
-    - [ ] render.js
-    - [ ] handle.js
