@@ -39,10 +39,10 @@ store = {
 ## TODO
 
 1. [x] Update User Stories
-2. [ ] npm init
-3. [ ] install packages
-4. [ ] create server.js
-5. [ ] create config.js
+2. [x] npm init
+3. [x] install packages
+4. [x] create server.js
+5. [x] create config.js
 6. [ ] .env file for environment variables
 7. [ ] create item folder (for feature
     - [ ] model.js
