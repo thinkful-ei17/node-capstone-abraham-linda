@@ -34,26 +34,48 @@ function seedItemData() {
 }
 
 
-function randomnize(array) {
-    return array[Math.floor(Math.random()*i.length)];
- 
+function randomize(array) {
+  return array[Math.floor(Math.random()*i.length)];
+}
 
-  return Object with typeRandom and typeStatus
+function generateRandomTypeAndStatus(){
+  const types = ['Loan','Sell','Free'];
+  const loanStatuses = ['Borrow','On Loan'];
+  const sellStatuses = ['Make Offer', 'Purchased'];
+  const freeStatuses = ['Claim','Claimed'];
+
+  const randomType = randomize(types);
+  let randomStatus;
+  switch(randomType){
+  case 'Loan':
+    randomStatus = randomize(loanStatuses);
+    break;
+  case 'Sell':
+    randomStatus = randomize(sellStatuses);
+    break;
+  case 'Free':
+    randomStatus = randomize(freeStatuses);
+    break;
+  }
+ 
+  return {type: randomType, status: randomStatus};
 }
 
 // generate an object representing an item.
 // can be used to generate seed data for db
 // or request.body data
 function generateItemData() {
-  let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`
-  let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`
+  let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
+  let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
+  const randomized = generateRandomTypeAndStatus();
+  
   return {
     name: faker.commerce.productName(),
-    type: randomType(),
+    type: randomized.type,
     description: faker.lorem.sentence(),
     postedBy: pName,
     acceptedBy: aName,
-    status:'On Loan'
+    status:randomized.status,
 
     author: {
       firstName: faker.name.firstName(),
