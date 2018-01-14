@@ -1,0 +1,29 @@
+{
+  "name": "node-capstone-abraham-linda",
+  "version": "1.0.0",
+  "description": "| Method | Endpoint | Description | |--|--|--| | GET | /item | Lists all items | | GET | /item/:id | Single item detail | | POST| /item | Creates a new item | | PUT | /item | Updates an item | | DELETE | /item/:id | Deletes an item |",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei17/node-capstone-abraham-linda.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei17/node-capstone-abraham-linda/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei17/node-capstone-abraham-linda#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mocha": "^4.1.0",
+    "mongoose": "^4.13.9",
+    "morgan": "^1.9.0"
+  }
+}
