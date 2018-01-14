@@ -38,16 +38,17 @@ store = {
 
 ## TODO
 
-1. [ ] npm init
-2. [ ] install packages
-3. [ ] create server.js
-4. [ ] create config.js
-5. [ ] .env file for environment variables
-6. [ ] create item folder (for feature
+1. [x] Update User Stories
+2. [ ] npm init
+3. [ ] install packages
+4. [ ] create server.js
+5. [ ] create config.js
+6. [ ] .env file for environment variables
+7. [ ] create item folder (for feature
     - [ ] model.js
     - [ ] router.js
     - [ ] test.js
-7. [ ] create public folder with client-side js
+8. [ ] create public folder with client-side js
     - [ ] app.js
     - [ ] index.html
     - [ ] style.css
