@@ -43,18 +43,20 @@ store = {
 3. [x] install packages
 4. [x] create server.js
 5. [x] create config.js
-6. [ ] .env file for environment variables
-7. [ ] create item folder (for feature
-    - [ ] model.js
-    - [ ] router.js
+6. [x] .env file for environment variables
+7. [x] create item folder (for feature
+    - [x] model.js
+    - [x] router.js
     - [ ] test.js
-8. [ ] create public folder with client-side js
+8. [x] create public folder with client-side js
     - [ ] app.js
     - [ ] index.html
     - [ ] style.css
     - [ ] api.js
     - [ ] render.js
     - [ ] handle.js
+9. [x] create seed data
+    {"name": "", "type": "", "description": "", "postedBy": "", "acceptedBy": "", "status": ""}
 
 #User Stories
 As a x I want to do y

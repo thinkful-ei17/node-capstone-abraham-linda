@@ -3,14 +3,15 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const { PORT, DATABASE_URL } = require('./config');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const itemsRouter = require('./items/v1/router');
+const bodyParser = require('body-parser');const mongoose = require('mongoose');
 
 const app = express();
 
 // Middleware
 app.use(morgan('common'));
 app.use(bodyParser.json());
+app.use('/api/v1',itemsRouter);
 
 app.get('/', (req, res)=>{
   res.json({message: 'Hello World, from project Sharing is Caring!'});
@@ -29,10 +30,10 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         console.log(`Your app is listening on port ${port}`);
         resolve();
       })
-                .on('error', err => {
-                  mongoose.disconnect();
-                  reject(err);
-                });
+        .on('error', err => {
+          mongoose.disconnect();
+          reject(err);
+        });
     });
   });
 }
