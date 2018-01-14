@@ -1,9 +1,3 @@
-{"name": "Freezer", "type": "Sell", "description": "Moving Sale", "postedBy": "Alice B.", "acceptedBy": "Mark E.", "status": ""}
-{"name": "2 tickets to movies", "type": "Free", "description": "Yes! Free! Cannot make it.", "postedBy": "Linda F.", "acceptedBy": "Abraham C.", "status": ""}
-{"name": "Ice Cream Maker", "type": "Loan", "description": "Get ready for summer, share your creations", "postedBy": "Abraham C.", "acceptedBy": "Linda F.", "status": "On Loan"}
-{"name": "Blender", "type": "Loan", "description": "Available for loan", "postedBy": "Billy C.", "acceptedBy": "", "status": ""}
-{"name": "free fruit", "type": "Free", "description": "When life gives you lemons, make lemonade", "postedBy": "Cat D.", "acceptedBy": "", "status": ""}
-{"name": "pet sitter services", "type": "Sell", "description": "Care for dogs and cats", "postedBy": "", "acceptedBy": "Mark E.", "status": ""}
 {"name": "Lawn Mower", "type": "Loan", "description": "Brand new Lawn mower sitting in my garage collecting dust now that I have astro-turf. Go ahed and borrow it if you need it!", "postedBy": "Alice A", "acceptedBy": "Charlie C.", "status": "On Loan"}
 {"name": "Free Dirt!", "type": "Free", "description": "Built a pool, lots of free dirt or whatever. Take it. PLEASE!", "postedBy": "Bob B.", "acceptedBy": "", "status": "Claim"}
 {"name": "Ninja Blender", "type": "Loan", "description": "Used it once, then figured juicing isn't for me. Avialable for loan (please clenat it when you return it)", "postedBy": "Charlie C.", "acceptedBy": "", "status": "Borrow"}
