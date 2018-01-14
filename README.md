@@ -131,3 +131,34 @@ Location -
 +User to Group Selected communication
 +Community Manager to User communication
 +Community Manager to Group Selected communication
+
+## Endpoints
+
+| Method | Endpoint | Description |
+|--|--|--|
+| GET | /item | Lists all items |
+| GET | /item/:id | Single item detail |
+| POST| /item | Creates a new item |
+| PUT | /item | Updates an item |
+| DELETE | /item/:id | Deletes an item |
+
+## Mock Objects
+
+```js
+item = {
+"name":'Lawn Mower',
+"image":'img.jpg',
+"type": 'Loan',
+"description":'Brand new Lawn mower sitting in my garage collecting dust. Now that I have astro-truf. Go ahead and borrow it if you need it! - Alice',
+"postedBy": 'Alice A.'
+"acceptedBy": 'Charlie C.'
+"status":'On Loan'
+};
+```
+
+## TODO
+
+- A single item object lists the poster and user who purchased/claimed item
+- An endpoint should exist (or querystring) that allows for filtering 
+- An endpoint should exist (or querystring) that displays the postedBy for a single user
+- An endpoint should exist (or querystring) that displays the acceptedBy for a single user
