@@ -32,7 +32,7 @@ var render = {
         <div class="actions">
         <p>Posted By: ${item.postedBy}</p>
         ${(item.acceptedBy ? item.status+' '+item.acceptedBy : '')}
-        <button type="button" class="action ${item.status.replace(' ','-')}">${item.status}</button>
+        <button type="button" class="action-btn ${item.status.replace(' ','-')}">${item.status}</button>
         </div>
       </div>
       `;
