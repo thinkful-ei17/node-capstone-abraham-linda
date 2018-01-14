@@ -68,13 +68,16 @@ function generateItemData() {
   let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
   let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
   const randomized = generateRandomTypeAndStatus();
-  
+  const availableStatuses = ['Borrow', 'Claim', 'Make Offer'];
+
+
+
   return {
     name: faker.commerce.productName(),
     type: randomized.type,
     description: faker.lorem.sentence(),
     postedBy: pName,
-    acceptedBy: aName,
+    acceptedBy: (availableStatuses.indexOf(randomized.status) >= 0 ?  null: aName),
     status: randomized.status,
   };
 }
