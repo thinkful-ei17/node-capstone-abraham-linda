@@ -156,9 +156,35 @@ item = {
 };
 ```
 
-## TODO
+> Note: Add Dropdown selecting populated by a STORE.users array which can be used to set STORE.currentUser and this can simulate interaction.
+
+```js
+const users = ['Alice', 'Bob','Charlie'];
+store = {
+  'currentUser': 'Alice A.'
+}
+```
 
 - A single item object lists the poster and user who purchased/claimed item
 - An endpoint should exist (or querystring) that allows for filtering 
 - An endpoint should exist (or querystring) that displays the postedBy for a single user
 - An endpoint should exist (or querystring) that displays the acceptedBy for a single user
+
+## TODO
+
+1. [ ] npm init
+2. [ ] install packages
+3. [ ] create server.js
+4. [ ] create config.js
+5. [ ] .env file for environment variables
+6. [ ] create item folder (for feature
+    - [ ] model.js
+    - [ ] router.js
+    - [ ] test.js
+7. [ ] create public folder with client-side js
+    - [ ] app.js
+    - [ ] index.html
+    - [ ] style.css
+    - [ ] api.js
+    - [ ] render.js
+    - [ ] handle.js
