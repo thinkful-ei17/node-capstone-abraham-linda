@@ -47,16 +47,18 @@ store = {
 7. [x] create item folder (for feature
     - [x] model.js
     - [x] router.js
-    - [ ] test.js
+    - [x] test.js
 8. [x] create public folder with client-side js
-    - [ ] app.js
-    - [ ] index.html
-    - [ ] style.css
-    - [ ] api.js
-    - [ ] render.js
-    - [ ] handle.js
+    - [x] app.js (client side js)
+    - [x] fetch.js
+    - [x] index.html
+    - [x] style.css
+    - [x] store.js 
+    - [x] render.js
+    - [x] handle.js
 9. [x] create seed data
     {"name": "", "type": "", "description": "", "postedBy": "", "acceptedBy": "", "status": ""}
+10. [ ] Set-up template for HTML
 
 #User Stories
 As a x I want to do y

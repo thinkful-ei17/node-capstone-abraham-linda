@@ -13,7 +13,10 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use('/api/v1',itemsRouter);
 
-app.get('/', (req, res)=>{
+const path = require('path'); //needed to test html file (static)
+app.use(express.static(path.join(__dirname, 'public'))); //needed to test html file (static)
+
+app.get('/api/v1', (req, res)=>{
   res.json({message: 'Hello World, from project Sharing is Caring!'});
 });
 

@@ -11,7 +11,7 @@ mongoose.Promise = global.Promise;
 
 let items; 
 
-router.get('/', (req, res, next) => {
+router.get('/items', (req, res, next) => {
   Item.find()
     .then(list => {
       res.json(list);
@@ -19,7 +19,6 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-``
 // router.get('/:id', (req, res, next) => {
 //   const id = req.params.id;
 
