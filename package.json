@@ -4,7 +4,7 @@
   "description": "| Method | Endpoint | Description | |--|--|--| | GET | /item | Lists all items | | GET | /item/:id | Single item detail | | POST| /item | Creates a new item | | PUT | /item | Updates an item | | DELETE | /item/:id | Deletes an item |",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit"
   },
   "repository": {
     "type": "git",

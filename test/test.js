@@ -11,9 +11,9 @@ const mongoose = require('mongoose'); //library to help with db interaction
 // this module
 const expect = chai.expect;
 
-const { Item } = require('./model');
-const {app, runServer, closeServer} = require('../../server');
-const {DATABASE_URL_TEST} = require('../../config');
+const { Item } = require('../items/v1/model');
+const {app, runServer, closeServer} = require('../server');
+const {DATABASE_URL_TEST} = require('../config');
 
 chai.use(chaiHttp);
 
