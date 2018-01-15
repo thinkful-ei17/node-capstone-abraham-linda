@@ -19,6 +19,22 @@ var render = {
     $('.js-welcome').html(message);
   },
 
+  userContextSwitcher: function(){
+    // Get array from api.listUsers
+    const usersList = api.listUsers();
+    // format user from usersList to option tag
+    const userOptions = usersList.map(user => {
+      return `<option>${user}</option>`;
+    });
+
+   //append userOptions to select element
+    let selectEl = '<select class="user">';
+    userOptions.forEach(u => selectEl += u);
+    selectEl += '</select>';
+
+    // inject select element to div
+    $('.js-mvp-user').html(selectEl);
+  },
   listItems: function (items) {
     const item = items.map(item => {
       return `
@@ -45,6 +61,8 @@ var render = {
 $(() =>{
   // Do stuff here e.g. call api.welcome()
   api.welcome().then(response => render.welcome(response));
+  api.listUsers();
+  render.userContextSwitcher();
   api.listItems().then(response => render.listItems(response));
 });
 

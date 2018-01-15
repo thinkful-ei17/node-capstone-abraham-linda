@@ -41,6 +41,12 @@ var api = {
       .then(res => res.json());
   },
 
+  listUsers: function(){
+    // This may be replaced with a users db collection if time permits
+    const users  = ['Alice A.', 'Bob B.', 'Charlie C.', 'David D.'];
+    return users;
+  },
+
   listItems: function () {
     const url = buildUrl('/api/v1/items');
     return fetch(url, {
