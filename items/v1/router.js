@@ -33,28 +33,40 @@ router.get('/items', (req, res, next) => {
 //     .catch(next);  // error handler
 // });
 
-// router.post('/', (req, res, next) => {
-//   const { name, checked } = req.body;
+router.post('/items', (req, res, next) => {
+  /***** Never trust users - validate input *****/
+  const requiredFields = ['name', 'type', 'postedBy', 'status'];
 
-//   /***** Never trust users - validate input *****/
-//   if (!name) {
-//     const err = new Error('Missing `name` in request body');
-//     err.status = 400;
-//     return next(err); // error handler
-//   }
-//   const newItem = { name, checked };
+  const missingFields = requiredFields.find(field => !(field in req.body));
 
-//   // create
-//   items.createAsync(newItem)
-//     .then(item => {
-//       if (item) {
-//         res.location(`http://${req.headers.host}/items/${item.id}`).status(201).json(item);
-//       } else {
-//         next(); // 404 handler
-//       }
-//     })
-//     .catch(next);  // error handler
-// });
+
+  if (missingFields){
+    console.log('Hi from Error Block :)');
+    const err = new Error(`Missing required field ${missingFields}`);
+    err.status = 400;
+    return next(err);
+  }
+
+  const { name, image, type, description, postedBy, acceptedBy, status } = req.body;
+
+  // if (!name) {
+  //   const err = new Error('Missing `name` in request body');
+  //   err.status = 400;
+  //   return next(err); // error handler
+  // }
+  const newItem = {name, image, type, description, postedBy, acceptedBy, status };
+
+  // create
+  Item.create(newItem)
+    .then(item => {
+      if (item) {
+        res.location(`http://${req.headers.host}/items/${item.id}`).status(201).json(item);
+      } else {
+        next(); // 404 handler
+      }
+    })
+    .catch(next);  // error handler
+});
 
 // router.put('/:id', (req, res, next) => {
 //   const id = req.params.id;

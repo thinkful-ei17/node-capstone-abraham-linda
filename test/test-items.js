@@ -140,16 +140,44 @@ describe('Item API resource', function() {
           res = _res;
           expect(res).to.have.status(200);
           // otherwise our db seeding didn't work
-          console.log('what is body', res.body.length);
           expect(res.body).to.have.length.of.at.least(1); 
           return Item.count();
         })
         .then(function(count) {
-          console.log(count);
           expect(res.body).to.have.lengthOf(count);
         });
     });
   }); 
+
+  describe('POST endpoint', function() {
+    // strategy: make a POST request with data,
+    // then prove that the blogpost we get back has
+    // right keys, and that `id` is there (which means
+    // the data was inserted into db)
+    it('should add a new item', function() {
+
+      const newItem= generateItemData();
+
+      return chai.request(app)
+        .post('/api/v1/items')
+        .send(newItem)
+        .then(function(res) {
+          expect(res).to.have.status(201);
+          expect(res).to.be.json;
+          expect(res.body).to.be.a('object');
+          console.log(res.body);
+          expect(res.body).to.include.keys(
+            '_id', 'name', 'image', 'type','description','postedBy','acceptedBy','status' );
+          expect(res.body.name).to.contain(newItem.name);
+          // cause Mongo should have created id on insertion
+          expect(res.body.id).to.not.be.null;
+          expect(res.body.postedBy).to.equal(newItem.postedBy);
+          expect(res.body.status).to.equal(newItem.status);
+          return Item.findById(res.body.id);
+        });
+    });
+  });
+
 
 }); 
 
