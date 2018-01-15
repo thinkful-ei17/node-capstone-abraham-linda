@@ -58,7 +58,7 @@ store = {
     - [x] handle.js
 9. [x] create seed data
     {"name": "", "type": "", "description": "", "postedBy": "", "acceptedBy": "", "status": ""}
-10. [ ] Set-up template for HTML
+10. [x] Set-up template for HTML
 
 #User Stories
 As a x I want to do y
