@@ -33,19 +33,21 @@ router.get('/items', (req, res, next) => {
 //     .catch(next);  // error handler
 // });
 
-router.post('/items', (req, res, next) => {
+router.post('/items', jsonParser, (req, res) => {
   /***** Never trust users - validate input *****/
   const requiredFields = ['name', 'type', 'postedBy', 'status'];
+  console.log('i am req body -early', req.body);
 
-  const missingFields = requiredFields.find(field => !(field in req.body));
+  const missingFields = requiredFields.filter(field => !(field in req.body)); //only returns 1 missing field (stops at first field fail)
+//if you use find - name in singular
+  console.log("hi i am missing", missingFields);
+  console.log('i am req body', req.body);
 
-
-  if (missingFields){
-    console.log('Hi from Error Block :)');
-    const err = new Error(`Missing required field ${missingFields}`);
-    err.status = 400;
-    return next(err);
-  }
+  // if (missingFields){
+  //   console.log('Hi from Error Block :)');
+  //   const err = new Error(`Missing required field ${missingFields}`);
+  //   return res.status(400).json(err.message);
+  // }
 
   const { name, image, type, description, postedBy, acceptedBy, status } = req.body;
 
@@ -61,12 +63,9 @@ router.post('/items', (req, res, next) => {
     .then(item => {
       if (item) {
         res.location(`http://${req.headers.host}/items/${item.id}`).status(201).json(item);
-      } else {
-        next(); // 404 handler
       }
-    })
-    .catch(next);  // error handler
-});
+    });
+  });
 
 // router.put('/:id', (req, res, next) => {
 //   const id = req.params.id;

@@ -56,7 +56,22 @@ var api = {
       }
     }).then(normalizeResponseErrors)
       .then(res => res.json());
-  }
+  },
+
+  createItem: function(newItem) {
+    console.log('what is this',newItem);
+    console.log('is STORE available', newItem.postedBy);
+
+    const url = buildUrl('/api/v1/items');
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(newItem),//newItem//
+    }).then(normalizeResponseErrors)
+      .then(res => res.json());
+    }
 
 };   
 

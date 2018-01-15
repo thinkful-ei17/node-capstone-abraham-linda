@@ -68,6 +68,7 @@ store = {
 17. [ ] Add View for Creation screen (Client)
 18. [ ] Add View for Edit screen  (Client)
 19. [ ] Add "Action" button functions for "Borrowing", etc (Client)
+20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs.
 
 
 
@@ -288,6 +289,7 @@ Alert Board - Broadcast message (only community manager);
 
 
 Future Features/Extension:
++add bootstrap columns
 +ability to check-in, out, flag broken
 
 resource

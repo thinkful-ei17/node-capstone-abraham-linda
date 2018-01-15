@@ -32,3 +32,33 @@ width: 20%;
   width: 130px;
   height: 40px;
 }
+
+.create-btn{
+  width: 130px;
+  height: 40px;
+  display: block;
+}
+
+.js-view-form{
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 70%;
+  border: 2px solid black;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.submit-btn{
+  margin-top: 15px;
+}
+
+.js-title, 
+.js-image, 
+.js-type,  
+.js-description,
+.js-status{
+  margin-top:5px;
+  margin-bottom:5px;
+}

@@ -14,9 +14,25 @@
 
 var render = {
 
+  view: function() {
+    if(STORE.view === 'list') {
+      api.listItems().then(response => this.listItems(response));
+    }
+    if(STORE.view === 'create') {
+      this.createItem();
+    }
+    // if(STORE.view === 'edit') {
+
+    // }
+    // if(STORE.view === 'delete') {
+
+    // }
+  },
+
   welcome: function (response) {
     const message = response.message;
-    $('.js-welcome').html(message);
+    const createItemButton =  '<button type="button" class="create-btn">List New Item</button>';
+    $('.js-welcome').html(message).append(createItemButton);
   },
 
   userContextSwitcher: function(){
@@ -35,6 +51,7 @@ var render = {
     // inject select element to div
     $('.js-mvp-user').html(selectEl);
   },
+  
   listItems: function (items) {
     const item = items.map(item => {
       return `
@@ -54,8 +71,63 @@ var render = {
       `;
     }
     ); 
-    $('.js-listitems').html(item);
+  $('.js-view').html(item);
+  },
+
+  createItem: function() {
+    const templateCreate = `
+    <form id="create" class="js-view-form form-group">
+      <fieldset>
+      <legend>Create</legend>
+      <div>
+        <label for="name">Item Title</label>
+        <input type="text" class="js-title form-control" name="name">
+      </div>
+      <div>
+        <label for="image">Item Image</label>
+        <input type="text" class="js-image form-control" name="image">
+      </div>
+      <div>
+        <label for="type">Type</label>
+        <input type="text" class="js-type form-control" name="type">
+      </div>
+      <div>
+        <label for="description">Item Description</label>
+        <textarea rows="4" cols="50" name="description"  class="js-description form-control"></textarea>
+
+      </div>
+      <div>
+        <label for="status">Item Status</label>
+        <input type="text" class="js-status form-control" name="status">
+      </div>
+      <button type="submit" class="btn-primary btn submit-btn">Submit</button>
+      </fieldset>
+      </form>
+    `;
+    $('.js-view').html(templateCreate);
   }
+  ,
+
+  // updateItem: function(item) {
+  //   return `
+  //   <div class="listing">
+  //     <div class="item-info">
+  //     <img src="http://lorempixel.com/80/80/cats" alt="${item.name}">
+  //     <h2>${item.name}</h2>
+  //     <em>Type: ${item.type}</em>
+  //     <p>${item.description}</p>
+  //     </div>
+  //     <div class="actions">
+  //     <p>Posted By: ${item.postedBy}</p>
+  //     ${(item.acceptedBy ? item.status+' '+item.acceptedBy : '')}
+  //     <button type="button" class="action-btn ${item.status.replace(' ','-')}">${item.status}</button>
+  //     </div>
+  //   </div>
+  //   `;
+  // }
+
+
+  
 };
 
 $(() =>{
@@ -63,7 +135,7 @@ $(() =>{
   api.welcome().then(response => render.welcome(response));
   api.listUsers();
   render.userContextSwitcher();
-  api.listItems().then(response => render.listItems(response));
+  render.view();
 });
 
 

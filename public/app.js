@@ -24,15 +24,28 @@
 //on document ready bind events
 jQuery(function ($) {
 
-  const STORE = {
-    view: 'list',       // current view: list | details | create | edit 
-    currentUser: 'Alice A.',          //current user account
-  };
+  $('.js-welcome').on('click', '.create-btn', handle.create);
+  //$('.js-view').on('submit', '.submit-btn', handle.addItem);
+  $('.js-view').submit(event, function(e) {
+    e.preventDefault();
+    handle.addItem(event);
+    console.log('Hello I ran');
+  });
 
-
-  //$('').on('', STORE, handle.);
 
 });
+
+// function handleShoppingListAdd() {
+
+//   $('#js-shopping-list-form').submit(function(e) {
+//     e.preventDefault();
+//     addShoppingItem({
+//       name: $(e.currentTarget).find('#js-new-item').val(),
+//       checked: false
+//     });
+//   });
+
+// }
 
 
   /*
