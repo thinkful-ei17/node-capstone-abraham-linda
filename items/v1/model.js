@@ -6,11 +6,11 @@ const mongoose = require('mongoose');
 const itemSchema = new mongoose.Schema({
   name: {type: String, required: true},
   image: {type: String, default: null}, //paste URL
-  type: {type: String, required: true, enum: ['Sell', 'Loan', 'Free'], default: 'Loan'},
+  type: {type: String, required: true, enum: ['Sell', 'Loan', 'Free']},
   description: {type: String, default: null},
   postedBy: {type: String, required: true},
   acceptedBy: {type: String, default: null},
-  status: {type: String, required: true, enum: ['Make Offer', 'Purchased', 'Claim', 'Claimed', 'Borrow', 'On Loan'], default: 'Borrow'},
+  status: {type: String, enum: ['Make Offer', 'Purchased', 'Claim', 'Claimed', 'Borrow', 'On Loan']},
 });
 
 

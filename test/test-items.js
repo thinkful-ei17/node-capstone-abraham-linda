@@ -27,7 +27,7 @@ function seedItemData() {
   const seedData = [];
 
   for (let i=1; i<=10; i++) {
-    seedData.push(generateItemData());
+    seedData.push(generateCreateItemData());
   }
   // this will return a promise
   return Item.insertMany(seedData);
@@ -40,21 +40,18 @@ function randomize(array) {
 
 function generateRandomTypeAndStatus(){
   const types = ['Loan','Sell','Free'];
-  const loanStatuses = ['Borrow','On Loan'];
-  const sellStatuses = ['Make Offer', 'Purchased'];
-  const freeStatuses = ['Claim','Claimed'];
 
   const randomType = randomize(types);
   let randomStatus;
   switch(randomType){
   case 'Loan':
-    randomStatus = randomize(loanStatuses);
+    randomStatus = 'Borrow';
     break;
   case 'Sell':
-    randomStatus = randomize(sellStatuses);
+    randomStatus = 'Make Offer';
     break;
   case 'Free':
-    randomStatus = randomize(freeStatuses);
+    randomStatus = 'Claim';
     break;
   }
  
@@ -64,22 +61,25 @@ function generateRandomTypeAndStatus(){
 // generate an object representing an item.
 // can be used to generate seed data for db
 // or request.body data
-function generateItemData() {
+function generateCreateItemData() {
   let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
-  let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
   const randomized = generateRandomTypeAndStatus();
   const availableStatuses = ['Borrow', 'Claim', 'Make Offer'];
-
-
 
   return {
     name: faker.commerce.productName(),
     type: randomized.type,
     description: faker.lorem.sentence(),
     postedBy: pName,
-    acceptedBy: (availableStatuses.indexOf(randomized.status) >= 0 ?  null: aName),
-    status: randomized.status,
+    acceptedBy: null,
+    status: randomized.status
   };
+}
+
+function generateEditItemData() {
+  let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
+
+  return { acceptedBy: aName };
 }
 
 
@@ -156,23 +156,22 @@ describe('Item API resource', function() {
     // the data was inserted into db)
     it('should add a new item', function() {
 
-      const newItem= generateItemData();
-
+      const newItem= generateCreateItemData();
+      console.log(newItem);
       return chai.request(app)
         .post('/api/v1/items')
         .send(newItem)
         .then(function(res) {
+          console.log(res.body);
           expect(res).to.have.status(201);
           expect(res).to.be.json;
           expect(res.body).to.be.a('object');
-          console.log(res.body);
           expect(res.body).to.include.keys(
             '_id', 'name', 'image', 'type','description','postedBy','acceptedBy','status' );
           expect(res.body.name).to.contain(newItem.name);
           // cause Mongo should have created id on insertion
           expect(res.body.id).to.not.be.null;
           expect(res.body.postedBy).to.equal(newItem.postedBy);
-          expect(res.body.status).to.equal(newItem.status);
           return Item.findById(res.body.id);
         });
     });

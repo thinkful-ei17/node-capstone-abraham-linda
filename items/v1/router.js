@@ -48,7 +48,7 @@ router.post('/items', jsonParser, (req, res) => {
   //   return res.status(400).json(err.message);
   // }
 
-  const { name, image, type, description, postedBy, acceptedBy  } = req.body;
+  const { name, image, type, description, postedBy } = req.body;
 
   // if (!name) {
   //   const err = new Error('Missing `name` in request body');
@@ -56,22 +56,22 @@ router.post('/items', jsonParser, (req, res) => {
   //   return next(err); // error handler
   // }
   
-  let autoStatus;
+  let status;
 
   switch(type){
   case 'Sell':
-    autoStatus = 'Make Offer';
+    status = 'Make Offer';
     break;
   case 'Loan':
-    autoStatus = 'Borrow';
+    status = 'Borrow';
     break;
   case 'Free':
-    autoStatus = 'Claim';
+    status = 'Claim';
     break;
   }
   
-  const newItem = {name, image, type, description, postedBy, acceptedBy, 
-    autoStatus };
+  
+  const newItem = {name, image, type, description, postedBy, status };
 
   // create
   Item.create(newItem)
