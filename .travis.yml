@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: qMhjl7rjwDwvE6o4qOSFepzm30DY1yz5/Wn3Bb/YWXAvDCEHNtxlzRJM1Y26qPvhBWg8bKOHkGMa+kAb/C7dlANurtVA4+x9pQm8DmtnCPifP79lOolvdOcUGKV+dCBqboFpEfgbVUrk0UTtQXDBquUP4XZ95XzQTQKGwgfDnCrkOKJb+7+tgbqz+tN/UQvpxCkRxoWcHDSufIDRuIw7xnPm0dawInAeoGilw6S74vlGXnqeu7SGDJwDKY02GZ4hBWddxR2CIrSIJB0RHv2kfnlJs1qXu8zImO7yiJdEd9BeE6gVmfYNL90S1a3JFP3Tkkn/JpSJHWd+v5GoWvHvpjq9qb80jZaiFWM+CL6DH43E3VBhDgRw40cfmhvU4RlkNpo0dMyaQutvWerbm9QkjxFHNM2SXa/hYVlIXC8Z1u2puC4GuhsP22tSeGl4uQxUnizE016N8FSsUXmxo5w9LxIqosY7HJkzv8ff7e/m6Z9y52+qDL7KNUwxezCFTOXd5KJd7e7l5veaBc4l+EjSVlbLVA0HLgATrAf5X4Wrn0KV30+s7BzJ01RiZ+BVAc/n/yjwKwCsoFV4ADwbdtRaSNnaCsy7g+Ckb24LGJz0urBY+idT+pkb/vb68c6FuVhhdP3zmGNQWlm9j1xXEb2TC67F0iU2dQXy3XTweBw6bso=
+  app: sharingiscaring-app
+  on:
+    repo: thinkful-ei17/node-capstone-abraham-linda
