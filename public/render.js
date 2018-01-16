@@ -65,7 +65,7 @@ var render = {
         <div class="actions">
         <p>Posted By: ${item.postedBy}</p>
         ${(item.acceptedBy ? item.status+' '+item.acceptedBy : '')}
-        <button type="button" class="action-btn ${item.status.replace(' ','-')}">${item.status}</button>
+        ${(item.postedBy === STORE.currentUser ? '':`<button type="button" class="action-btn btn ${item.status.replace(' ','-')}">${item.status}</button>`)}
         ${(item.postedBy === STORE.currentUser ? `<button type="button" data-item-id="${item._id}" class="btn btn-info edit-btn">Edit</button>`:'')}
         ${(item.postedBy === STORE.currentUser ? `<button type="button" data-item-id="${item._id}" class="btn btn-danger delete-btn">Delete</button>`:'')}
         </div>

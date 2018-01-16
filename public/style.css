@@ -28,7 +28,9 @@ flex-direction: column;
 width: 20%;
 }
 
-.action-btn{
+.action-btn,
+.edit-btn,
+.delete-btn{
   width: 130px;
   height: 40px;
 }
@@ -50,7 +52,7 @@ width: 20%;
   padding-right: 10px;
 }
 
-.submit-btn, 
+.submit-edit-btn, 
 .cancel-btn{
   margin-top: 15px;
 }

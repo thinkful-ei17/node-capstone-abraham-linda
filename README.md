@@ -62,16 +62,27 @@ store = {
 11. [x] Add User Context Switcher for testing user functions.
 12. [x] Add 'Create' Route for adding a new item (API)
 13. [x] Add 'Update' Route for editing an existing item (API) 
-14. [ ] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:borrower`
-15. [x] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true`
+14. [ ] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:acceptedBy`
+15. [ ] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true`
 16. [x] Add 'Delete' Route for delete an existing item (API) `/api/v1/item/:id`
 17. [x] Add View for Creation screen (Client)
 18. [x] Add View for Edit screen  (Client)
-19. [ ] Add "Action" button functions for "Borrowing", etc (Client)
+19. [ ] Add "Action" button functions for "Borrow, Claim, Make Offer" ", etc (Client)
 20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs.
 21. [x] Add 'Cancel' Button to 'Create' Page
-22. [] Go through code and add error catch
+22. [ ] Go through code and add error catches
 23. [x] Fix mvp - user render on change
+24. [x] Add 'Delete' Button to 'List' Page
+25. [x] Add 'Edit' Button to 'List' Page
+26. [x] Add 'Submit' Button to 'Create' Page
+27. [x] Add 'Submit' Button to 'Edit' Page
+28. [x] Add logic to hide button if PostedBy is equal to currentUser
+29. [ ] Add logic to disable buttons for items that are 'Purchased, Claimed, or On Loan' status
+30. [ ] Stretch - Add user collection and update user contextswitcher to use user db
+31. [ ] more a11y friendly
+32. [ ] update image to accept user image provided rather than default 
+33. [ ] update and add tests!
+
 
 #Pain Points
 1. be cautious with referencing older code because no set pattern ex. syntax can change with different version dependencies (libraries). Ex. test -should vs. shouldOf; should vs. accept; fetch headers vs. New Headers
