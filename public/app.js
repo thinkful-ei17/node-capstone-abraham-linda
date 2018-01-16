@@ -29,7 +29,6 @@ jQuery(function ($) {
 
   // This handles the submit of the create 
   $('.js-view').on('submit','form#create',event, function(e) {
-    console.log('Create Submit button clicked!!!');
     e.preventDefault();
     handle.addItem(event);
   });
@@ -38,6 +37,12 @@ jQuery(function ($) {
   $('.js-view').on('click', '.cancel-btn', handle.cancelOption);
 
   $('.js-view').on('click', '.edit-btn', handle.edit);
+
+  $('.js-view').on('click', '.delete-btn', event, function(e) {
+    e.preventDefault();
+    const itemId = $('.btn-danger').data('item-id');
+    handle.delete(event, itemId);
+  }); 
   
    // This handles the submit of the create 
   $('.js-view').on('submit','form#edit', event, function(e) {

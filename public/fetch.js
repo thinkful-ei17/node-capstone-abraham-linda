@@ -102,6 +102,18 @@ var api = {
     .catch(err => {
       console.error(`Error: ${err.message}`);
     });
+  },
+
+  delete: function(id){
+    const url = buildUrl(`/api/v1/items/${id}`);
+    return fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(normalizeResponseErrors)
+    .catch(err => console.error(err.message));
   }
 };   
 

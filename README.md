@@ -64,7 +64,7 @@ store = {
 13. [x] Add 'Update' Route for editing an existing item (API) 
 14. [ ] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:borrower`
 15. [x] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true`
-16. [ ] Add 'Delete' Route for delete an existing item (API) `/api/v1/item/:id`
+16. [x] Add 'Delete' Route for delete an existing item (API) `/api/v1/item/:id`
 17. [x] Add View for Creation screen (Client)
 18. [x] Add View for Edit screen  (Client)
 19. [ ] Add "Action" button functions for "Borrowing", etc (Client)

@@ -64,6 +64,11 @@ let handle = {
       STORE.view = 'list';
       render.view();
     });
+  },
+
+  delete: function(event, id){
+    api.delete(id);
+    render.view();
   }
 };
 
