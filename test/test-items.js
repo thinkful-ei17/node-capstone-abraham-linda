@@ -157,12 +157,10 @@ describe('Item API resource', function() {
     it('should add a new item', function() {
 
       const newItem= generateCreateItemData();
-      console.log(newItem);
       return chai.request(app)
         .post('/api/v1/items')
         .send(newItem)
         .then(function(res) {
-          console.log(res.body);
           expect(res).to.have.status(201);
           expect(res).to.be.json;
           expect(res.body).to.be.a('object');
@@ -177,8 +175,50 @@ describe('Item API resource', function() {
     });
   });
 
+  describe('PUT endpoint', function() {
 
-}); 
+    // strategy:
+    //  1. Get an existing blogpost from db
+    //  2. Make a PUT request to update that blogpost
+    //  3. Prove posts returned by request contains data we sent
+    //  4. Prove blogpost in db is correctly updated
+    it('should update fields you send over', function() {
+      let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
+      const randomized = generateRandomTypeAndStatus();
+      const updateData = {
+        name: pName,
+        image: faker.image.imageUrl(80, 80, 'cats'),
+        type: randomized.type,
+        description: faker.lorem.sentence(),
+      };
+
+      return Item
+        .findOne()
+        .then(function(item) {
+          updateData.id = item.id;
+
+          // make request then inspect it to make sure it reflects
+          // data we sent
+          return chai.request(app)
+            .put(`/api/v1/items/${item.id}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+
+          return Item.findById(updateData.id);
+        })
+        .then(function(item) {
+          expect(item.name).to.equal(updateData.name);
+          expect(item.image).to.equal(updateData.image);
+          expect(item.type).to.equal(updateData.type);
+          expect(item.description).to.equal(updateData.description);
+          expect(item.postedBy).to.not.equal(null);
+          expect(item.status).to.not.equal(null);
+        });
+    });
+  });
+});
 
 
     // it('should return blogposts with right fields', function() {

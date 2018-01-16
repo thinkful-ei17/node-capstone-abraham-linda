@@ -83,37 +83,35 @@ router.post('/items', jsonParser, (req, res) => {
     .catch(err => console.error(`Error: ${err.message}`));
 });
 
-// router.put('/:id', (req, res, next) => {
-//   const id = req.params.id;
+router.put('/items/:id', (req, res) => {
+  const id = req.params.id;
 
-//   /***** Never trust users - validate input *****/
-//   const replaceItem = {};
-//   const updateableFields = ['name', 'checked'];
+  /***** Never trust users - validate input *****/
+  const replaceItem = {};
+  const updateableFields = ['name', 'image', 'type', 'description'];
 
-//   updateableFields.forEach(field => {
-//     if (field in req.body) {
-//       replaceItem[field] = req.body[field];
-//     }
-//   });
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      replaceItem[field] = req.body[field];
+    }
+  });
 
-//   /***** Never trust users - validate input *****/
-//   if (!replaceItem.name) {
-//     const err = new Error('Missing `name` in request body');
-//     err.status = 400;
-//     return next(err); // error handler
-//   }
+  // /***** Never trust users - validate input *****/
+  // if (!replaceItem.name) {
+  //   const err = new Error('Missing `name` in request body');
+  //   err.status = 400;
+  //   return next(err); // error handler
+  // }
 
-//   // replace
-//   items.findByIdAndReplaceAsync(id, replaceItem)
-//     .then(item => {
-//       if (item) {
-//         res.json(item);
-//       } else {
-//         next(); // 404 handler
-//       }
-//     })
-//     .catch(next); // error handler
-// });
+  // replace
+  Item.findByIdAndUpdate(id, replaceItem)
+    .then(item => {
+      if (item) {
+        res.status(204).end(); //must put .end (send empty object) so it does not hang in limbo
+      } 
+  });
+});
+
 
 // router.patch('/:id', (req, res, next) => {
 //   const id = req.params.id;

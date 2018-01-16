@@ -70,6 +70,7 @@ store = {
 19. [ ] Add "Action" button functions for "Borrowing", etc (Client)
 20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs.
 21. [x] Add 'Cancel' Button to 'Create' Page
+22. [] Go through code and add error catch
 
 #Pain Points
 1. be cautious with referencing older code because no set pattern ex. syntax can change with different version dependencies (libraries). Ex. test -should vs. shouldOf; should vs. accept; fetch headers vs. New Headers
