@@ -22,7 +22,7 @@ let handle = {
       status: el.find('.js-status').val(),
       postedBy: STORE.currentUser,
     };
-    console.log(`Here is what I have in addItem as a document ${JSON.stringify(document)}`);
+  
     api.createItem(document)
     .then(()=>{
       STORE.view = 'list';
@@ -49,7 +49,6 @@ let handle = {
   editItem: function(event, id){
     event.preventDefault();
     const el = $(event.target);
-    console.log(el);
     const editedDocument = {
       id: id,
       name: event.target[1].value,
@@ -60,7 +59,6 @@ let handle = {
       // acceptedBy: 
       // status : 
     };
-    console.log(editedDocument);
     api.editItem(editedDocument)
     .then(res =>{
       STORE.view = 'list';

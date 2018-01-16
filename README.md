@@ -61,16 +61,17 @@ store = {
 10. [x] Set-up template for HTML
 11. [x] Add User Context Switcher for testing user functions.
 12. [x] Add 'Create' Route for adding a new item (API)
-13. [ ] Add 'Update' Route for editing an existing item (API) 
+13. [x] Add 'Update' Route for editing an existing item (API) 
 14. [ ] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:borrower`
-15. [ ] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true`
+15. [x] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true`
 16. [ ] Add 'Delete' Route for delete an existing item (API) `/api/v1/item/:id`
 17. [x] Add View for Creation screen (Client)
-18. [ ] Add View for Edit screen  (Client)
+18. [x] Add View for Edit screen  (Client)
 19. [ ] Add "Action" button functions for "Borrowing", etc (Client)
 20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs.
 21. [x] Add 'Cancel' Button to 'Create' Page
 22. [] Go through code and add error catch
+23. [x] Fix mvp - user render on change
 
 #Pain Points
 1. be cautious with referencing older code because no set pattern ex. syntax can change with different version dependencies (libraries). Ex. test -should vs. shouldOf; should vs. accept; fetch headers vs. New Headers

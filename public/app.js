@@ -42,14 +42,14 @@ jQuery(function ($) {
    // This handles the submit of the create 
   $('.js-view').on('submit','form#edit', event, function(e) {
     e.preventDefault();
-    const itemId = $(event.currentTarget).data('item-id');
-    console.log('I am the lost itemId', itemId);
+    const itemId = $('.js-view > form#edit').data('item-id');
     handle.editItem(event, itemId);
   });
 
   // This handles user-context-switching in mvp
   $('.js-mvp-user').on('change', function(e){
     STORE.currentUser = $('select option:selected').text();
+    render.view();
   });
 
 });

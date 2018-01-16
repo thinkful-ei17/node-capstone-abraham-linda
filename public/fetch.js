@@ -99,7 +99,6 @@ var api = {
       body: JSON.stringify(editedDocument),
     })
     .then(normalizeResponseErrors)
-    .then(res => res.json())
     .catch(err => {
       console.error(`Error: ${err.message}`);
     });

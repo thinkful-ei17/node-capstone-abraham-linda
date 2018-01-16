@@ -114,6 +114,22 @@ router.put('/items/:id', (req, res) => {
     });
 });
 
+router.delete('/items/:id', (req, res) => {
+    const id = req.params.id;
+  
+    Item.findByIdAndRemove(id)
+      .then(count => {
+        if (count) {
+          res.status(204).end();
+        } else {
+          res.status(404).end();
+        }
+      })
+      .catch(err => {
+        res.status(500).send({message: 'Internal Server Error'});
+      }); // error handler
+  });
+
 
 // router.patch('/:id', (req, res, next) => {
 //   const id = req.params.id;

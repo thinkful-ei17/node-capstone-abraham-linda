@@ -128,7 +128,6 @@ var render = {
 
   editItem: function(item) {
     const editTemplate = this._renderForm('edit', item._id);
-    console.log(item);
 
     $('.js-view').html(editTemplate);
     $('.js-view > form#edit').find('.js-title').val(item.name);
