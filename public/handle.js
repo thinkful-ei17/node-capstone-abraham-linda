@@ -23,7 +23,10 @@ let handle = {
       postedBy: STORE.currentUser,
     };
     api.createItem(document)
-    .then(STORE.view = 'list')
+    .then(()=>{
+      STORE.view = 'list';
+      render.view();
+    })
     .catch(err => console.error(`Error: ${err.message}`));
   }
 };

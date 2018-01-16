@@ -1,6 +1,6 @@
 // run handle > executes fetch > returns to STORE > then we render based on STORE (view and user)
 
-/* global jQuery, handle */
+/* global jQuery, handle, render */
 'use strict';
 /**
  * Event Listener
@@ -28,8 +28,7 @@ jQuery(function ($) {
   //$('.js-view').on('submit', '.submit-btn', handle.addItem);
   $('.js-view').submit(event, function(e) {
     e.preventDefault();
-    handle.addItem(event)
-    .then(() => render.view());
+    handle.addItem(event);
   });
 
 
