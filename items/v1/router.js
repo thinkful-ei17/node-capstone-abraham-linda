@@ -37,7 +37,7 @@ router.get('/items', (req, res, next) => {
 
 router.post('/items', jsonParser, (req, res) => {
   /***** Never trust users - validate input *****/
-  const requiredFields = ['name', 'type', 'postedBy', 'status'];
+  const requiredFields = ['name', 'type', 'postedBy'];
 
   const missingFields = requiredFields.filter(field => !(field in req.body)); //only returns 1 missing field (stops at first field fail)
 //if you use find - name in singular
@@ -48,14 +48,30 @@ router.post('/items', jsonParser, (req, res) => {
   //   return res.status(400).json(err.message);
   // }
 
-  const { name, image, type, description, postedBy, acceptedBy, status } = req.body;
+  const { name, image, type, description, postedBy, acceptedBy  } = req.body;
 
   // if (!name) {
   //   const err = new Error('Missing `name` in request body');
   //   err.status = 400;
   //   return next(err); // error handler
   // }
-  const newItem = {name, image, type, description, postedBy, acceptedBy, status };
+  
+  let autoStatus;
+
+  switch(type){
+  case 'Sell':
+    autoStatus = 'Make Offer';
+    break;
+  case 'Loan':
+    autoStatus = 'Borrow';
+    break;
+  case 'Free':
+    autoStatus = 'Claim';
+    break;
+  }
+  
+  const newItem = {name, image, type, description, postedBy, acceptedBy, 
+    autoStatus };
 
   // create
   Item.create(newItem)

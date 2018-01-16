@@ -75,7 +75,13 @@ var render = {
   },
 
   createItem: function() {
-    const templateCreate = `
+    /**
+     * These should come from a possible endpoint listing valid combinations
+     * of 
+     */
+    const typeList = ['Sell', 'Loan', 'Free']; 
+
+    let templateCreate = `
     <form id="create" class="js-view-form form-group">
       <fieldset>
       <legend>Create</legend>
@@ -89,16 +95,18 @@ var render = {
       </div>
       <div>
         <label for="type">Type</label>
-        <input type="text" class="js-type form-control" name="type">
+        <select class="form-control js-type" name="type">`;
+        
+    typeList.forEach(t =>{
+      templateCreate+=`<option value="${t}">${t}</option>`;
+    });
+
+    templateCreate+=`</select>
       </div>
       <div>
         <label for="description">Item Description</label>
         <textarea rows="4" cols="50" name="description"  class="js-description form-control"></textarea>
 
-      </div>
-      <div>
-        <label for="status">Item Status</label>
-        <input type="text" class="js-status form-control" name="status">
       </div>
       <button type="submit" class="btn-primary btn submit-btn">Submit</button>
       </fieldset>
