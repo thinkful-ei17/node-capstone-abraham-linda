@@ -69,7 +69,11 @@ store = {
 18. [ ] Add View for Edit screen  (Client)
 19. [ ] Add "Action" button functions for "Borrowing", etc (Client)
 20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs.
+21. [ ] Add 'Cancel' Button to 'Create' Page
 
+#Pain Points
+1. [] -  
+2. [] - 
 
 
 #User Stories

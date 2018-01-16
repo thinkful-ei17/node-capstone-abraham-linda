@@ -50,7 +50,8 @@ width: 20%;
   padding-right: 10px;
 }
 
-.submit-btn{
+.submit-btn, 
+.cancel-btn{
   margin-top: 15px;
 }
 

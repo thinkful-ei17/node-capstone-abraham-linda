@@ -34,6 +34,8 @@ jQuery(function ($) {
   $('.js-mvp-user').on('change', function(e){
     STORE.currentUser = $('select option:selected').text();
   });
+
+  $('.js-view').on('click', '.cancel-btn', handle.cancelOption);
 });
 
 // function handleShoppingListAdd() {

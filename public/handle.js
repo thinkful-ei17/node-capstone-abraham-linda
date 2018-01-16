@@ -28,6 +28,12 @@ let handle = {
       render.view();
     })
     .catch(err => console.error(`Error: ${err.message}`));
+  },
+
+  cancelOption: function(event) {
+    event.preventDefault();
+    STORE.view = 'list';
+    render.view();
   }
 };
 

@@ -109,6 +109,7 @@ var render = {
 
       </div>
       <button type="submit" class="btn-primary btn submit-btn">Submit</button>
+      <button type="cancel" class="btn-outline-warning btn cancel-btn">Cancel</button>
       </fieldset>
       </form>
     `;
