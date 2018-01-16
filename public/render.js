@@ -57,7 +57,7 @@ var render = {
       return `
       <div class="listing">
         <div class="item-info">
-        <img src="http://lorempixel.com/80/80/cats" alt="${item.name}">
+        <img src="//lorempixel.com/80/80/cats" alt="${item.name}">
         <h2>${item.name}</h2>
         <em>Type: ${item.type}</em>
         <p>${item.description}</p>
@@ -71,7 +71,7 @@ var render = {
       `;
     }
     ); 
-  $('.js-view').html(item);
+    $('.js-view').html(item);
   },
 
   createItem: function() {
