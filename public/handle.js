@@ -13,8 +13,6 @@ let handle = {
 
   addItem: function(event) {
     //event.preventDefault();
-    console.log('I am STORE hear me ROAD', STORE.currentUser);
-    const store = event.data;
     const el = $(event.target);
     const document = {
       name: el.find('[name=name]').val(),
@@ -24,10 +22,9 @@ let handle = {
       status: el.find('[name=status]').val(),
       postedBy: STORE.currentUser,
     };
-    console.log('name is name', document.name);
-    console.log('image is image', document.image);
     api.createItem(document)
-    .then(STORE.view = 'list');
+    .then(STORE.view = 'list')
+    .catch(err => console.error(`Error: ${err.message}`));
   }
 };
 

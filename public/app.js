@@ -28,8 +28,8 @@ jQuery(function ($) {
   //$('.js-view').on('submit', '.submit-btn', handle.addItem);
   $('.js-view').submit(event, function(e) {
     e.preventDefault();
-    handle.addItem(event);
-    console.log('Hello I ran');
+    handle.addItem(event)
+    .then(() => render.view());
   });
 
 

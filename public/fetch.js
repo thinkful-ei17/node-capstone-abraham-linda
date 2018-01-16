@@ -54,24 +54,27 @@ var api = {
       headers: {
         'Accept': 'application/json'
       }
-    }).then(normalizeResponseErrors)
-      .then(res => res.json());
+    })
+    .then(normalizeResponseErrors)
+    .then(res => res.json())
+    .catch(err => console.error(err.message));
   },
 
   createItem: function(newItem) {
-    console.log('what is this',newItem);
-    console.log('is STORE available', newItem.postedBy);
-
     const url = buildUrl('/api/v1/items');
     return fetch(url, {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(newItem),//newItem//
-    }).then(normalizeResponseErrors)
-      .then(res => res.json());
-    }
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(newItem),
+    })
+    .then(normalizeResponseErrors)
+    .then(res => res.json())
+    .catch(err => {
+      console.error(`Error: ${err.message}`);
+    });
+  }
 
 };   
 

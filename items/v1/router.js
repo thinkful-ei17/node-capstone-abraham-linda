@@ -38,12 +38,9 @@ router.get('/items', (req, res, next) => {
 router.post('/items', jsonParser, (req, res) => {
   /***** Never trust users - validate input *****/
   const requiredFields = ['name', 'type', 'postedBy', 'status'];
-  console.log('i am req body -early', req.body);
 
   const missingFields = requiredFields.filter(field => !(field in req.body)); //only returns 1 missing field (stops at first field fail)
 //if you use find - name in singular
-  console.log("hi i am missing", missingFields);
-  console.log('i am req body', req.body);
 
   // if (missingFields){
   //   console.log('Hi from Error Block :)');
@@ -66,8 +63,9 @@ router.post('/items', jsonParser, (req, res) => {
       if (item) {
         res.location(`http://${req.headers.host}/items/${item.id}`).status(201).json(item);
       }
-    });
-  });
+    })
+    .catch(err => console.error(`Error: ${err.message}`));
+});
 
 // router.put('/:id', (req, res, next) => {
 //   const id = req.params.id;
