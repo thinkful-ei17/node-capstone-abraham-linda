@@ -42,7 +42,9 @@ jQuery(function ($) {
    // This handles the submit of the create 
   $('.js-view').on('submit','form#edit', event, function(e) {
     e.preventDefault();
-    handle.editItem(event);
+    const itemId = $(event.currentTarget).data('item-id');
+    console.log('I am the lost itemId', itemId);
+    handle.editItem(event, itemId);
   });
 
   // This handles user-context-switching in mvp

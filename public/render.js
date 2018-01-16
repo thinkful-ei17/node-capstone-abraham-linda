@@ -75,7 +75,7 @@ var render = {
     $('.js-view').html(item);
   },
 
-  _renderForm: function(className){
+  _renderForm: function(className, id = null){
   /**
      * These should come from a possible endpoint listing valid combinations
      * of 

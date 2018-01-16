@@ -87,8 +87,23 @@ var api = {
     .catch(err => {
       console.error(`Error: ${err.message}`);
     });
-  }
+  },
 
+  editItem: function(editedDocument) {
+    const url = buildUrl(`/api/v1/items/${editedDocument.id}`);
+    return fetch(url, {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(editedDocument),
+    })
+    .then(normalizeResponseErrors)
+    .then(res => res.json())
+    .catch(err => {
+      console.error(`Error: ${err.message}`);
+    });
+  }
 };   
 
 

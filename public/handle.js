@@ -46,12 +46,12 @@ let handle = {
     });
   },
 
-  editItem: function(event){
+  editItem: function(event, id){
     event.preventDefault();
     const el = $(event.target);
     console.log(el);
     const editedDocument = {
-      // id: _id
+      id: id,
       name: event.target[1].value,
       image: event.target[2].value,
       type: event.target[3].value,
