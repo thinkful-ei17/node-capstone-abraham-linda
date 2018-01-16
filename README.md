@@ -65,7 +65,7 @@ store = {
 14. [ ] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:borrower`
 15. [ ] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true`
 16. [ ] Add 'Delete' Route for delete an existing item (API) `/api/v1/item/:id`
-17. [ ] Add View for Creation screen (Client)
+17. [x] Add View for Creation screen (Client)
 18. [ ] Add View for Edit screen  (Client)
 19. [ ] Add "Action" button functions for "Borrowing", etc (Client)
 20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs.
