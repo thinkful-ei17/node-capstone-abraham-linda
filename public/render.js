@@ -82,8 +82,11 @@ var render = {
      */
     const typeList = ['Sell', 'Loan', 'Free']; 
 
-    let templateCreate = `
-    <form id="${className}" class="js-view-form form-group">
+    let templateCreate = `<form id="${className}" `;
+    
+    templateCreate += (id ? `data-item-id=${id}`:'');
+    
+    templateCreate+=` class="js-view-form form-group">
       <fieldset>
       <legend>${className[0].toUpperCase()+className.substring(1)}</legend>
       <div>
@@ -124,7 +127,7 @@ var render = {
   ,
 
   editItem: function(item) {
-    const editTemplate = this._renderForm('edit');
+    const editTemplate = this._renderForm('edit', item._id);
     console.log(item);
 
     $('.js-view').html(editTemplate);
