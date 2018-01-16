@@ -1,11 +1,13 @@
 'use strict';
 
 const express = require('express');
-const jsonParser = require('body-parser').json();
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const jsonParser = bodyParser.json();
 const { Item } = require('./model');
 const router = express.Router();
+
+router.use(jsonParser);
 
 mongoose.Promise = global.Promise;
 
