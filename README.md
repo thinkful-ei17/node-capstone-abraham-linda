@@ -69,12 +69,17 @@ store = {
 18. [ ] Add View for Edit screen  (Client)
 19. [ ] Add "Action" button functions for "Borrowing", etc (Client)
 20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs.
-21. [ ] Add 'Cancel' Button to 'Create' Page
+21. [x] Add 'Cancel' Button to 'Create' Page
 
 #Pain Points
-1. [] -  
-2. [] - 
+1. be cautious with referencing older code because no set pattern ex. syntax can change with different version dependencies (libraries). Ex. test -should vs. shouldOf; should vs. accept; fetch headers vs. New Headers
 
+#Lessons Learned
+1. Refer to latest documentation
+2. Despite how much planning you do, stuff will still not run smoothly; however, do plan - you end up dealing with mole hill rather than a mountain.
+3. Understand which database you want to work with and why one works better than another option
+4. Time Management - rule of thumb: task X by Pi
+5. Start out with proper understanding of MVP 
 
 #User Stories
 As a x I want to do y
