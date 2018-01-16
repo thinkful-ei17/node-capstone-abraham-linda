@@ -60,7 +60,7 @@ store = {
     {"name": "", "type": "", "description": "", "postedBy": "", "acceptedBy": "", "status": ""}
 10. [x] Set-up template for HTML
 11. [x] Add User Context Switcher for testing user functions.
-12. [ ] Add 'Create' Route for adding a new item (API)
+12. [x] Add 'Create' Route for adding a new item (API)
 13. [ ] Add 'Update' Route for editing an existing item (API) 
 14. [ ] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:borrower`
 15. [ ] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true`

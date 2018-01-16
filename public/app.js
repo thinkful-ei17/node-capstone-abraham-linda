@@ -31,7 +31,9 @@ jQuery(function ($) {
     handle.addItem(event);
   });
 
-
+  $('.js-mvp-user').on('change', function(e){
+    STORE.currentUser = $('select option:selected').text();
+  });
 });
 
 // function handleShoppingListAdd() {
