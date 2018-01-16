@@ -15,13 +15,14 @@ let handle = {
     //event.preventDefault();
     const el = $(event.target);
     const document = {
-      name: el.find('[name=name]').val(),
-      image: el.find('[name=image]').val(),
-      type: el.find('[name=type]').val(),
-      description: el.find('[name=description]').val(),
-      status: el.find('[name=status]').val(),
+      name: el.find('.js-title').val(),
+      image: el.find('.js-image').val(),
+      type: el.find('.js-type').val(),
+      description: el.find('.js-description').val(),
+      status: el.find('.js-status').val(),
       postedBy: STORE.currentUser,
     };
+    console.log(`Here is what I have in addItem as a document ${JSON.stringify(document)}`);
     api.createItem(document)
     .then(()=>{
       STORE.view = 'list';
@@ -34,6 +35,37 @@ let handle = {
     event.preventDefault();
     STORE.view = 'list';
     render.view();
+  },
+  edit: function(event){
+    event.preventDefault();
+    STORE.view = 'edit';
+    const itemId = $(event.currentTarget).data('item-id');
+    api.listItem(itemId)
+    .then(res => {
+      render.view(res);
+    });
+  },
+
+  editItem: function(event){
+    event.preventDefault();
+    const el = $(event.target);
+    console.log(el);
+    const editedDocument = {
+      // id: _id
+      name: event.target[1].value,
+      image: event.target[2].value,
+      type: event.target[3].value,
+      description: event.target[4].value,
+     // postedBy: STORE.currentUser
+      // acceptedBy: 
+      // status : 
+    };
+    console.log(editedDocument);
+    api.editItem(editedDocument)
+    .then(res =>{
+      STORE.view = 'list';
+      render.view();
+    });
   }
 };
 

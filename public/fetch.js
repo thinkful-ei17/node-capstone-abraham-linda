@@ -59,6 +59,19 @@ var api = {
     .then(res => res.json())
     .catch(err => console.error(err.message));
   },
+  
+  listItem: function(id){
+    const url = buildUrl(`/api/v1/items/${id}`);
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(normalizeResponseErrors)
+    .then(res => res.json())
+    .catch(err => console.error(err.message));
+  },
 
   createItem: function(newItem) {
     const url = buildUrl('/api/v1/items');

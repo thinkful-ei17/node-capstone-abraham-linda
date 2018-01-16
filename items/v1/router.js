@@ -21,19 +21,21 @@ router.get('/items', (req, res, next) => {
     .catch(next);
 });
 
-// router.get('/:id', (req, res, next) => {
-//   const id = req.params.id;
+router.get('/items/:id', (req, res) => {
+  const id = req.params.id;
 
-//   items.findByIdAsync(id)
-//     .then(item => {
-//       if (item) {
-//         res.json(item);
-//       } else {
-//         next(); // 404 handler
-//       }
-//     })
-//     .catch(next);  // error handler
-// });
+  Item.findById(id)
+    .then(item => {
+      if (item) {
+        res.json(item);
+      } else {
+        res.status(404).end(); // 404 handler
+      }
+    })
+    .catch(err => {
+      res.status(500).send({message: 'Internal Server Error'});
+    });  // error handler
+});
 
 router.post('/items', jsonParser, (req, res) => {
   /***** Never trust users - validate input *****/
@@ -109,7 +111,7 @@ router.put('/items/:id', (req, res) => {
       if (item) {
         res.status(204).end(); //must put .end (send empty object) so it does not hang in limbo
       } 
-  });
+    });
 });
 
 

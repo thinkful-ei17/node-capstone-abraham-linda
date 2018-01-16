@@ -14,16 +14,16 @@
 
 var render = {
 
-  view: function() {
+  view: function(id=null) {
     if(STORE.view === 'list') {
       api.listItems().then(response => this.listItems(response));
     }
     if(STORE.view === 'create') {
       this.createItem();
     }
-    // if(STORE.view === 'edit') {
-
-    // }
+    if(STORE.view === 'edit') {
+      this.editItem(id);
+    }
     // if(STORE.view === 'delete') {
 
     // }
@@ -66,6 +66,7 @@ var render = {
         <p>Posted By: ${item.postedBy}</p>
         ${(item.acceptedBy ? item.status+' '+item.acceptedBy : '')}
         <button type="button" class="action-btn ${item.status.replace(' ','-')}">${item.status}</button>
+        ${(item.postedBy === STORE.currentUser ? `<button type="button" data-item-id="${item._id}" class="btn btn-info edit-btn">Edit</button>`:'')}
         </div>
       </div>
       `;
@@ -74,17 +75,17 @@ var render = {
     $('.js-view').html(item);
   },
 
-  createItem: function() {
-    /**
+  _renderForm: function(className){
+  /**
      * These should come from a possible endpoint listing valid combinations
      * of 
      */
     const typeList = ['Sell', 'Loan', 'Free']; 
 
     let templateCreate = `
-    <form id="create" class="js-view-form form-group">
+    <form id="${className}" class="js-view-form form-group">
       <fieldset>
-      <legend>Create</legend>
+      <legend>${className[0].toUpperCase()+className.substring(1)}</legend>
       <div>
         <label for="name">Item Title</label>
         <input type="text" class="js-title form-control" name="name">
@@ -108,32 +109,30 @@ var render = {
         <textarea rows="4" cols="50" name="description"  class="js-description form-control"></textarea>
 
       </div>
-      <button type="submit" class="btn-primary btn submit-btn">Submit</button>
+      <button type="submit" class="btn-primary btn submit-${className}-btn">Submit</button>
       <button type="cancel" class="btn-outline-warning btn cancel-btn">Cancel</button>
       </fieldset>
       </form>
     `;
-    $('.js-view').html(templateCreate);
+    return templateCreate;
+  },
+
+  createItem: function() {
+    const createTemplate = this._renderForm('create');
+    $('.js-view').html(createTemplate);
   }
   ,
 
-  // updateItem: function(item) {
-  //   return `
-  //   <div class="listing">
-  //     <div class="item-info">
-  //     <img src="http://lorempixel.com/80/80/cats" alt="${item.name}">
-  //     <h2>${item.name}</h2>
-  //     <em>Type: ${item.type}</em>
-  //     <p>${item.description}</p>
-  //     </div>
-  //     <div class="actions">
-  //     <p>Posted By: ${item.postedBy}</p>
-  //     ${(item.acceptedBy ? item.status+' '+item.acceptedBy : '')}
-  //     <button type="button" class="action-btn ${item.status.replace(' ','-')}">${item.status}</button>
-  //     </div>
-  //   </div>
-  //   `;
-  // }
+  editItem: function(item) {
+    const editTemplate = this._renderForm('edit');
+    console.log(item);
+
+    $('.js-view').html(editTemplate);
+    $('.js-view > form#edit').find('.js-title').val(item.name);
+    $('.js-view > form#edit').find('.js-image').val(item.image);
+    $('.js-view > form#edit .js-type option[value='+item.type+']').attr('selected', 'true');
+    $('.js-view > form#edit').find('.js-description').val(item.description);
+  }
 
 
   

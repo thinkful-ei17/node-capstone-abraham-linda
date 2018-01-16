@@ -24,18 +24,32 @@
 //on document ready bind events
 jQuery(function ($) {
 
+  // This wires the Create "List new Item" button
   $('.js-welcome').on('click', '.create-btn', handle.create);
-  //$('.js-view').on('submit', '.submit-btn', handle.addItem);
-  $('.js-view').submit(event, function(e) {
+
+  // This handles the submit of the create 
+  $('.js-view').on('submit','form#create',event, function(e) {
+    console.log('Create Submit button clicked!!!');
     e.preventDefault();
     handle.addItem(event);
   });
 
+  // This handles cancel button in create
+  $('.js-view').on('click', '.cancel-btn', handle.cancelOption);
+
+  $('.js-view').on('click', '.edit-btn', handle.edit);
+  
+   // This handles the submit of the create 
+  $('.js-view').on('submit','form#edit', event, function(e) {
+    e.preventDefault();
+    handle.editItem(event);
+  });
+
+  // This handles user-context-switching in mvp
   $('.js-mvp-user').on('change', function(e){
     STORE.currentUser = $('select option:selected').text();
   });
 
-  $('.js-view').on('click', '.cancel-btn', handle.cancelOption);
 });
 
 // function handleShoppingListAdd() {
