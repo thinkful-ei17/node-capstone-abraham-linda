@@ -82,6 +82,7 @@ store = {
 31. [ ] more a11y friendly
 32. [ ] update image to accept user image provided rather than default 
 33. [ ] update and add tests!
+34. [x] update seedData on mLab (missing '.')
 
 
 #Pain Points
