@@ -67,8 +67,12 @@ let handle = {
   },
 
   delete: function(event, id){
+    console.log('handle delete', id);
+    console.log('what is event in handle', event)
     api.delete(id);
+    STORE.view = 'list';
     render.view();
+    console.log('Hi I am delete handler after render.view() ran');
   }
 };
 

@@ -38,17 +38,20 @@ jQuery(function ($) {
 
   $('.js-view').on('click', '.edit-btn', handle.edit);
 
-  $('.js-view').on('click', '.delete-btn', event, function(e) {
+  $('.js-view').on('click', '.delete-btn', function(e) {
     e.preventDefault();
-    const itemId = $('.btn-danger').data('item-id');
-    handle.delete(event, itemId);
+    console.log(e.currentTarget)
+    //const itemId = $('.btn-danger').data('item-id');
+    const itemId = $(e.currentTarget).data('item-id');
+    console.log('app id', itemId);
+    handle.delete(e, itemId);
   }); 
   
    // This handles the submit of the create 
-  $('.js-view').on('submit','form#edit', event, function(e) {
+  $('.js-view').on('submit','form#edit', function(e) {
     e.preventDefault();
     const itemId = $('.js-view > form#edit').data('item-id');
-    handle.editItem(event, itemId);
+    handle.editItem(e, itemId);
   });
 
   // This handles user-context-switching in mvp
