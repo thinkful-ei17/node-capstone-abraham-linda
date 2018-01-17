@@ -80,7 +80,7 @@ store = {
 29. [ ] Add logic to disable buttons for items that are 'Purchased, Claimed, or On Loan' status (Linda)
 30. [ ] Stretch - Add user collection and update user contextswitcher to use user db
 31. [ ] more a11y friendly (Abe)
-32. [ ] update image to accept user image provided rather than default (Abe)
+32. [x] update image to accept user image provided rather than default (Abe)
 33. [ ] update and add tests! (Abe)
 34. [x] update seedData on mLab (missing '.')
 35. [ ] css cleanup (ex. new item submit button not inline with cancel button) (Abe)
