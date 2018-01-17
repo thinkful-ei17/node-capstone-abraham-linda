@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 let items; 
 
 router.get('/items', (req, res) => {
-  Item.find()
+  Item.find({},{}, {sort: {_id: -1}})
     .then(list => {
       res.json(list);
     })
