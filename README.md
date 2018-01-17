@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda.svg?branch=master)](https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda)
+
 ## Endpoints
 
 | Method | Endpoint | Description |
