@@ -96,6 +96,71 @@ router.put('/items/:id', (req, res) => {
     });
 });
 
+router.put('/items/:id/:acceptedBy', (req, res) => {
+  console.log('router ran');
+  const id = req.params.id;
+  const user = req.params.acceptedBy;
+  const type = req.body.type;
+  let status;
+
+  switch(type){
+    case 'Free':
+    status = 'Claimed'
+    break;
+    case 'Loan':
+    status = 'On Loan'
+    break;
+    case 'Sell':
+    status = 'Purchased'
+    break;
+  }
+
+  Item.findById(id)
+  .then(item => {
+    Item.findByIdAndUpdate(id, {acceptedBy: user, status: status})
+    .then(() => res.status(204).end())
+  });
+});
+  // find one (id); return type, then based on this type; status should be xxx - swtich in here
+  // if(req.type)
+
+  // switch(event.target[3].value) {
+  //   case 'Sell':
+  //   claimDocument.status = 'Purchased'
+  //   break;
+
+  //   case 'Free':
+  //   const claimDocument = {
+  //     id: id,
+  //     acceptedBy: STORE.currentUser,
+  //     status: 'Claimed'
+  //   }
+  //   break;
+  //   case 'Loan':
+  //   const claimDocument = {
+  //     id: id,
+  //     acceptedBy: STORE.currentUser,
+  //     status: 'On Loan'
+  //   }
+  //   break;
+
+  /***** Never trust users - validate input *****/
+  // const replaceItem = {};
+  // const updateableFields = ['status'];
+
+  // updateableFields.forEach(field => {
+  //   if (field in req.body) {
+  //     replaceItem[field] = req.body[field];
+  //   }
+  // });
+
+  // Item.findByIdAndUpdate(id, replaceItem)
+  //   .then(item => {
+  //     if (item) {
+  //       res.status(204).end(); //must put .end (send empty object) so it does not hang in limbo
+  //     } 
+  //   });
+
 router.delete('/items/:id', (req, res) => {
   const id = req.params.id;
   

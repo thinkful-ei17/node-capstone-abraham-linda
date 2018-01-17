@@ -54,7 +54,19 @@ jQuery(function ($) {
     render.view();
   });
 
-});
+  // This handles the click of action buttons 
+  $('.js-view').on('click','.action-btn', function(e) {
+    e.preventDefault();
+    const itemId = $('.action-btn').data('item-id');
+    const itemType = $('.action-btn').data('item-type');
+    console.log('app.js ran and itemId is', itemId);
+    console.log('app.js ran and itemType is', itemType);
+    handle.claimItem(e, itemId, itemType);
+  });
+
+}); 
+
+
 
 // function handleShoppingListAdd() {
 
