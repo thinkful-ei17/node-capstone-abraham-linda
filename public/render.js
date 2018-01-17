@@ -57,7 +57,7 @@ var render = {
       return `
       <div class="listing">
         <div class="item-info">
-        <img src="//lorempixel.com/80/80/cats" alt="${item.name}">
+        <img src="${(item.image ? item.image : '//lorempixel.com/80/80/cats')}" alt="${item.name}">
         <h2>${item.name}</h2>
         <em>Type: ${item.type}</em>
         <p>${item.description}</p>
@@ -92,11 +92,11 @@ var render = {
       <legend>${className[0].toUpperCase()+className.substring(1)}</legend>
       <div>
         <label for="name">Item Title</label>
-        <input type="text" class="js-title form-control" name="name">
+        <input type="text" class="js-title form-control" name="name" required>
       </div>
       <div>
         <label for="image">Item Image</label>
-        <input type="text" class="js-image form-control" name="image">
+        <input type="text" class="js-image form-control" name="image" placeholder="e.g. http://lorempixel.com/80/80/cat">
       </div>
       <div>
         <label for="type">Type</label>
