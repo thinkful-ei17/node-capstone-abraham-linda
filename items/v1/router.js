@@ -130,45 +130,30 @@ router.delete('/items/:id', (req, res) => {
       }); // error handler
   });
 
+router.patch('/:id/', (req, res)=> {
+  const id = req.params.id;
 
-// router.patch('/:id', (req, res, next) => {
-//   const id = req.params.id;
+  /***** Never trust users - validate input *****/
+  const replaceItem = {};
+  const updateableFields = ['name', 'checked'];
+    
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      replaceItem[field] = req.body[field];
+    }
+  });
 
-//   /***** Never trust users - validate input *****/
-//   const replaceItem = {};
-//   const updateableFields = ['name', 'checked'];
-  
-//   updateableFields.forEach(field => {
-//     if (field in req.body) {
-//       replaceItem[field] = req.body[field];
-//     }
-//   });
-
-//   // update
-//   items.findByIdAndUpdateAsync(id, replaceItem)
-//     .then(item => {
-//       if (item) {
-//         res.json(item);
-//       } else {
-//         next(); // 404 handler
-//       }
-//     })
-//     .catch(next); // error handler
-// });
-
-// router.delete('/:id', (req, res, next) => {
-//   const id = req.params.id;
-
-//   items.findByIdAndRemoveAsync(id)
-//     .then(count => {
-//       if (count) {
-//         res.status(204).end();
-//       } else {
-//         next(); // 404 handler
-//       }
-//     })
-//     .catch(next); // error handler
-// });
+  // update
+  items.findByIdAndUpdateAsync(id, replaceItem)
+    .then(item => {
+      if (item) {
+        res.json(item);
+      } else {
+        next(); // 404 handler
+      }
+    })
+    .catch(next); // error handler
+});
 
 
 
