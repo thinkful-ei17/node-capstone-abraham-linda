@@ -114,6 +114,17 @@ var api = {
     })
     .then(normalizeResponseErrors)
     .catch(err => console.error(err.message));
+  },
+
+  claim: function(id){
+    const url = buildUrl(`/api/v1/items/${id}`);
+    return fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Accept': ''
+      }
+
+    })
   }
 };   
 
