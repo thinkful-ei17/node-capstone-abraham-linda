@@ -112,31 +112,4 @@ router.delete('/items/:id', (req, res) => {
       }); // error handler
   });
 
-router.patch('/:id/', (req, res)=> {
-  const id = req.params.id;
-
-  /***** Never trust users - validate input *****/
-  const replaceItem = {};
-  const updateableFields = ['name', 'checked'];
-    
-  updateableFields.forEach(field => {
-    if (field in req.body) {
-      replaceItem[field] = req.body[field];
-    }
-  });
-
-  // update
-  items.findByIdAndUpdateAsync(id, replaceItem)
-    .then(item => {
-      if (item) {
-        res.json(item);
-      } else {
-        next(); // 404 handler
-      }
-    })
-    .catch(next); // error handler
-});
-
-
-
 module.exports = router;
