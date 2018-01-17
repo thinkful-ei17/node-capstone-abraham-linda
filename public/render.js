@@ -63,11 +63,13 @@ var render = {
         <p>${item.description}</p>
         </div>
         <div class="actions">
-        <p>Posted By: ${item.postedBy}</p>
-        ${(item.acceptedBy ? item.status+' '+item.acceptedBy : '')}
-        ${(item.postedBy === STORE.currentUser ? '':`<button type="button" class="action-btn btn ${item.status.replace(' ','-')}">${item.status}</button>`)}
+        <p>Posted by: ${item.postedBy}</p>
+        ${(item.acceptedBy ? item.status+' by: '+item.acceptedBy : '')}
+        ${(((item.status === 'Borrow' || item.status === 'Claim' || item.status === 'Make Offer') && (item.postedBy !== STORE.currentUser)) ? `<button type="button" class="action-btn btn ${item.status.replace(' ','-')}">${item.status}</button>` : '')}
+        ${((item.status === 'On Loan' || item.status === 'Claimed' || item.status === 'Purchased') ? `<div class="js-status-tag"> ${item.status} </div>`: '')}
         ${(item.postedBy === STORE.currentUser ? `<button type="button" data-item-id="${item._id}" class="btn btn-info edit-btn">Edit</button>`:'')}
         ${(item.postedBy === STORE.currentUser ? `<button type="button" data-item-id="${item._id}" class="btn btn-danger delete-btn">Delete</button>`:'')}
+        
         </div>
       </div>
       `;
@@ -148,8 +150,6 @@ $(() =>{
   render.userContextSwitcher();
   render.view();
 });
-
-
 
 /*
 
