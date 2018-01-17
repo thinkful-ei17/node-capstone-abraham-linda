@@ -68,7 +68,7 @@ store = {
 17. [x] Add View for Creation screen (Client)
 18. [x] Add View for Edit screen  (Client)
 19. [ ] Add "Action" button functions for "Borrow, Claim, Make Offer" ", etc (Client) (Linda)
-20. [ ] Fix - next is used with middleware therefore not needed; updated to have error msgs. (Abe)
+20. [x] Fix - next is used with middleware therefore not needed; updated to have error msgs. (Abe)
 21. [x] Add 'Cancel' Button to 'Create' Page
 22. [ ] Go through code and add error catches 
 23. [x] Fix mvp - user render on change
