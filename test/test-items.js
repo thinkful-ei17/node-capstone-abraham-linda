@@ -218,110 +218,32 @@ describe('Item API resource', function() {
         });
     });
   });
+
+  describe('DELETE endpoint', function(){
+    it('should delete an item', function(){
+     let testItem;
+
+     return Item
+      .findOne()
+      .then((item =>{
+        testItem = item._id;
+        return chai.request(app).delete(`/api/v1/items/${item._id}`);
+      }))
+      .then(res =>{
+        expect(res).to.have.status(204);
+      })
+      .then(() =>{
+        return Item.findById(testItem);
+      })
+      .then(res =>{
+        expect(res).to.be.null;
+      });
+   });
+  });
 });
 
 
-    // it('should return blogposts with right fields', function() {
-    //   // Strategy: Get back all blog posts, and ensure they have expected keys
-    //   //console.log('test true ran');
-    //   //expect(true).be.true;
-    //   let resBlog;
-    //   return chai.request(app)
-    //     .get('/posts')
-    //     .then(function(res) {
-    //       expect(res).to.have.status(200);
-    //       expect(res).to.be.json;
-    //       expect(res.body).to.be.a('array');
-    //       expect(res.body).to.have.length.of.at.least(1);
-
-    //       res.body.forEach(function(blogpost) {
-    //         expect(blogpost).to.be.a('object');
-    //         expect(blogpost).to.include.keys(
-    //           'id', 'author', 'title', 'content','created');
-    //       });
-    //       resBlog = res.body[0];
-    //       return BlogPost.findById(resBlog.id);
-    //     })
-    //     .then(function(blogpost) {
-    //       expect(resBlog.id).to.equal(blogpost.id);
-    //       expect(resBlog.author).to.contain(blogpost.author.firstName);
-    //       expect(resBlog.title).to.equal(blogpost.title);
-    //       expect(resBlog.content).to.equal(blogpost.content); 
-    //     });
-    // });
-  // });
-
-  /*
-  describe('POST endpoint', function() {
-    // strategy: make a POST request with data,
-    // then prove that the blogpost we get back has
-    // right keys, and that `id` is there (which means
-    // the data was inserted into db)
-    it('should add a new blogpost', function() {
-
-      const newBlogPost = generateBlogData();
-
-      return chai.request(app)
-        .post('/posts')
-        .send(newBlogPost)
-        .then(function(res) {
-          expect(res).to.have.status(201);
-          expect(res).to.be.json;
-          expect(res.body).to.be.a('object');
-          console.log(res.body);
-          expect(res.body).to.include.keys(
-            'id', 'author', 'title', 'content','created');
-          expect(res.body.author).to.contain(newBlogPost.author.firstName);
-          // cause Mongo should have created id on insertion
-          expect(res.body.id).to.not.be.null;
-          expect(res.body.title).to.equal(newBlogPost.title);
-          expect(res.body.content).to.equal(newBlogPost.content);
-          return BlogPost.findById(res.body.id);
-        })
-        .then(function(restaurant) {
-          expect(restaurant.author.firstName).to.equal(newBlogPost.author.firstName);
-          expect(restaurant.author.lastName).to.equal(newBlogPost.author.lastName);
-          expect(restaurant.title).to.equal(newBlogPost.title);
-          expect(restaurant.content).to.equal(newBlogPost.content);
-        });
-    });
-  });
-
-  describe('PUT endpoint', function() {
-
-    // strategy:
-    //  1. Get an existing blogpost from db
-    //  2. Make a PUT request to update that blogpost
-    //  3. Prove posts returned by request contains data we sent
-    //  4. Prove blogpost in db is correctly updated
-    it('should update fields you send over', function() {
-      const updateData = {
-        title: 'Hello',
-        content: 'World!'
-      };
-
-      return BlogPost
-        .findOne()
-        .then(function(blogpost) {
-          updateData.id = blogpost.id;
-
-          // make request then inspect it to make sure it reflects
-          // data we sent
-          return chai.request(app)
-            .put(`/posts/${blogpost.id}`)
-            .send(updateData);
-        })
-        .then(function(res) {
-          expect(res).to.have.status(204);
-
-          return BlogPost.findById(updateData.id);
-        })
-        .then(function(blogpost) {
-          expect(blogpost.title).to.equal(updateData.title);
-          expect(blogpost.content).to.equal(updateData.content);
-        });
-    });
-  });
+/*
 
   describe('DELETE endpoint', function() {
     // strategy:
