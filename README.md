@@ -87,6 +87,7 @@ store = {
 
 #Pain Points
 1. be cautious with referencing older code because no set pattern ex. syntax can change with different version dependencies (libraries). Ex. test -should vs. shouldOf; should vs. accept; fetch headers vs. New Headers
+2. Don't forget to keep your promises. :) (promises are important!)
 
 #Lessons Learned
 1. Refer to latest documentation

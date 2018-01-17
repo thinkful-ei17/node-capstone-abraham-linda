@@ -38,14 +38,8 @@ jQuery(function ($) {
 
   $('.js-view').on('click', '.edit-btn', handle.edit);
 
-  $('.js-view').on('click', '.delete-btn', function(e) {
-    e.preventDefault();
-    console.log(e.currentTarget)
-    //const itemId = $('.btn-danger').data('item-id');
-    const itemId = $(e.currentTarget).data('item-id');
-    console.log('app id', itemId);
-    handle.delete(e, itemId);
-  }); 
+  $('.js-view').on('click', '.delete-btn', handle.delete);
+
   
    // This handles the submit of the create 
   $('.js-view').on('submit','form#edit', function(e) {
