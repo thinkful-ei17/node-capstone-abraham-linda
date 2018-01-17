@@ -104,6 +104,23 @@ var api = {
     });
   },
 
+  claimItem: function(claimDocument) {
+    const url = buildUrl(`/api/v1/items/${claimDocument.id}/${claimDocument.acceptedBy}`);
+    console.log('what is in claimDocument', claimDocument);
+    console.log('what is url', url);
+    return fetch(url, {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(claimDocument),
+    })
+    .then(normalizeResponseErrors)
+    .catch(err => {
+      console.error(`Error: ${err.message}`);
+    });
+  },
+
   delete: function(id){
     const url = buildUrl(`/api/v1/items/${id}`);
     return fetch(url, {
@@ -115,6 +132,7 @@ var api = {
     .then(normalizeResponseErrors)
     .catch(err => console.error(err.message));
   }
+  
 };   
 
 

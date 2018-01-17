@@ -66,6 +66,22 @@ let handle = {
     });
   },
 
+  claimItem: function(event, id, type){
+    event.preventDefault();
+    console.log('claimItem ran');
+    const el = $(event.target);
+    let claimDocument;
+    console.log('what is event.target',event.target);
+    claimDocument = {id: id, acceptedBy: STORE.currentUser, type: type};
+
+    console.log('handle ran, passing onto api claimDocument of', claimDocument);
+    api.claimItem(claimDocument)
+    .then(res =>{
+      STORE.view = 'list';
+      render.view();
+    });
+  },
+
   delete: function(event){
     event.preventDefault();
     const itemId = $(event.currentTarget).data('item-id');
