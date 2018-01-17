@@ -82,8 +82,6 @@ function generateEditItemData() {
   return { acceptedBy: aName };
 }
 
-
-
 // this function deletes the entire database.
 // we'll call it in an `afterEach` block below
 // to ensure data from one test does not stick
@@ -119,19 +117,15 @@ describe('Item API resource', function() {
     return closeServer();
   });
 
+  /**
+   * This tests the GET endpoint which is the primary endpoint that will be used
+   * for by users that are browsing the items list. Later the test can be expanded
+   * (or more tests written) to test filtering and pagination. 
+   * 
+   */
   describe('GET endpoint', function() {
 
     it('should return all existing items posted', function() {
-    //  console.log('test false ran');
-    // expect(false).be.false;
-    // strategy:
-    //    1. get back all blogposts returned by GET request to `/posts`
-    //    2. prove res has right status, data type
-    //    3. prove the number of blogposts we got back is equal to number
-    //       in db.
-    //
-    // need to have access to mutate and access `res` across
-    // `.then()` calls below, so declare it here so can modify in place
       let res;
       return chai.request(app)
         .get('/api/v1/items')
@@ -175,13 +169,12 @@ describe('Item API resource', function() {
     });
   });
 
+  /**
+   * Test the PUT endpoint where we can edit an existing item.
+   * A PUT would also be used when testing the functionality users accepting
+   * an item.
+   */
   describe('PUT endpoint', function() {
-
-    // strategy:
-    //  1. Get an existing blogpost from db
-    //  2. Make a PUT request to update that blogpost
-    //  3. Prove posts returned by request contains data we sent
-    //  4. Prove blogpost in db is correctly updated
     it('should update fields you send over', function() {
       let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
       const randomized = generateRandomTypeAndStatus();
@@ -219,11 +212,15 @@ describe('Item API resource', function() {
     });
   });
 
+  /**
+   * Test the Delete endpoint to make sure that we can successfully remove
+   * an item by calling the DELETE method.
+   */
   describe('DELETE endpoint', function(){
     it('should delete an item', function(){
-     let testItem;
+      let testItem;
 
-     return Item
+      return Item
       .findOne()
       .then((item =>{
         testItem = item._id;
@@ -238,37 +235,6 @@ describe('Item API resource', function() {
       .then(res =>{
         expect(res).to.be.null;
       });
-   });
-  });
-});
-
-
-/*
-
-  describe('DELETE endpoint', function() {
-    // strategy:
-    //  1. get a post
-    //  2. make a DELETE request for that post's id
-    //  3. assert that response has right status code
-    //  4. prove that post with the id doesn't exist in db anymore
-    it('delete a post by id', function() {
-
-      let post;
-
-      return BlogPost
-        .findOne()
-        .then(function(_post) {
-          post = _post;
-          return chai.request(app).delete(`/posts/${post.id}`);
-        })
-        .then(function(res) {
-          expect(res).to.have.status(204);
-          return BlogPost.findById(post.id);
-        })
-        .then(function(_post) {
-          expect(_post).to.be.null;
-        });
     });
   });
 });
-*/
