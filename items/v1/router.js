@@ -16,6 +16,13 @@ mongoose.Promise = global.Promise;
 
 let items; 
 
+
+
+passport.use(jwtStrategy);
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+router.use(jwtAuth);
+
 //GET (Read) method endpoint '/items'
 //finds and returns all documents that are a part of Items db
 //sorted by id in descending order (largest to smallest)
@@ -29,12 +36,6 @@ router.get('/items', (req, res) => {
       res.status(500).json({message: 'Internal Server Error'});
     }); //error handler
 });
-
-
-passport.use(jwtStrategy);
-const jwtAuth = passport.authenticate('jwt', { session: false });
-
-router.use(jwtAuth);
 
 //GET (Read) method endpoint '/items/id'
 //finds and returns document of requested id parameter 
