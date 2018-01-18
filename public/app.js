@@ -1,12 +1,3 @@
-// (client) app.js > user performs action (ie. click) > executes (!)handle callback
-// (client) handle.js > executes (!)fetch, receives returned promise from fetch, modifies STORE (ie. STORE.view), and executes (!)render > 
-// (client) fetch.js > calls server (!)router, retrieves data, and returns promise >
-// (client) render.js > inject HTML
-// (server) router.js > CRUD req and res > returns promise
-// (BE) model.js > schema and instance method (serialize)
-// (BE) primer-itemdataset.json > primer/seed data
-// (FE) index.html and style.css - structure and style application
-
 'use strict';
 /**
  * Event Listener
