@@ -87,6 +87,7 @@ router.post('/items', jsonParser, (req, res) => {
     .catch(err => console.error(`Error: ${err.message}`)); //error handler
 });
 
+
 //Return toggle
 //PUT (Update) method endpoint '/items/:id'
 //Update existing item ('Return' button)
@@ -96,7 +97,7 @@ router.post('/items', jsonParser, (req, res) => {
 //set status back to 'Borrow'
 //set acceptedBy back to null
 //find item in Items db by id, then update values for acceptedBy and status
-router.put('/items/:id', (req, res) => {
+router.put('/items/return/:id', (req, res) => {
   const id = req.params.id;
   const type = req.body.type;
 
@@ -114,8 +115,6 @@ router.put('/items/:id', (req, res) => {
         Item.findByIdAndUpdate(id, {acceptedBy: acceptedBy, status: status})
         .then(() => res.status(204).end()) //204 handler
         .catch(err => console.error(`Error: ${err.message}`)); //error handler
-    } else {
-      res.status(404).end(); // 404 handler
     }
   })
   .catch(err => {
@@ -130,7 +129,7 @@ router.put('/items/:id', (req, res) => {
 //obtain the new fields/values desired from req.body
 //define replaceItem with new fieds/values
 //find by id in Item db the item that will be updated and pass in the replaceItem updated values
-router.put('/items/:id', (req, res) => {
+router.put('/items/edit/:id', (req, res) => {
   const id = req.params.id;
 
   /***** Never trust users - validate input *****/
@@ -160,7 +159,7 @@ router.put('/items/:id', (req, res) => {
 //capture type body value
 //based on type, set status
 //find item in Items db by id, then update values for acceptedBy and status
-router.put('/items/:id/:acceptedBy', (req, res) => {
+router.put('/items/claim/:id/:acceptedBy', (req, res) => {
   const id = req.params.id;
   const user = req.params.acceptedBy;
   const type = req.body.type;

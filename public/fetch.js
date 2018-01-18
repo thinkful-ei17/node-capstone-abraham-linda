@@ -100,7 +100,7 @@ let api = {
   },
 
   editItem: function(editedDocument) {
-    const url = buildUrl(`/api/v1/items/${editedDocument.id}`);
+    const url = buildUrl(`/api/v1/items/edit/${editedDocument.id}`);
     return fetch(url, {
       method: 'PUT',
       headers: new Headers({
@@ -115,7 +115,7 @@ let api = {
   },
 
   claimItem: function(claimDocument) {
-    const url = buildUrl(`/api/v1/items/${claimDocument.id}/${claimDocument.acceptedBy}`);
+    const url = buildUrl(`/api/v1/items/claim/${claimDocument.id}/${claimDocument.acceptedBy}`);
     return fetch(url, {
       method: 'PUT',
       headers: new Headers({
@@ -130,7 +130,7 @@ let api = {
   },
 
   returnItem: function(returnDocument) {
-    const url = buildUrl(`/api/v1/items/${returnDocument.id}`);
+    const url = buildUrl(`/api/v1/items/return/${returnDocument.id}`);
     return fetch(url, {
       method: 'PUT',
       headers: new Headers({
