@@ -84,7 +84,7 @@ store = {
 19. [x] Add "Action" button functions for "Borrow, Claim, Make Offer" ", etc (Client) (Linda)
 20. [x] Fix - next is used with middleware therefore not needed; updated to have error msgs. (Abe)
 21. [x] Add 'Cancel' Button to 'Create' Page
-22. [ ] Go through code and add error catches 
+22. [x] Go through code and add error catches (Linda)
 23. [x] Fix mvp - user render on change
 24. [x] Add 'Delete' Button to 'List' Page
 25. [x] Add 'Edit' Button to 'List' Page
@@ -98,6 +98,8 @@ store = {
 33. [ ] update and add tests! (Abe)
 34. [x] update seedData on mLab (missing '.')
 35. [ ] css cleanup (ex. new item submit button not inline with cancel button) (Abe)(Linda)
+36. [x] general housekeeping (Abe)(Linda)
+37. [ ] second pass at general housekeeping (Abe)(Linda)
 
 #Future Features/Extensions
 1. Flag broken resources
