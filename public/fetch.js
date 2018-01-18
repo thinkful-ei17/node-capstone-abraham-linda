@@ -115,7 +115,7 @@ let api = {
   },
 
   claimItem: function(claimDocument) {
-    const url = buildUrl(`/api/v1/items/claim/${claimDocument.id}/${claimDocument.acceptedBy}`);
+    const url = buildUrl(`/api/v1/items/claim/${claimDocument.id}`);
     return fetch(url, {
       method: 'PUT',
       headers: new Headers({

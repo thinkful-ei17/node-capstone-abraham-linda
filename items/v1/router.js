@@ -159,9 +159,9 @@ router.put('/items/edit/:id', (req, res) => {
 //capture type body value
 //based on type, set status
 //find item in Items db by id, then update values for acceptedBy and status
-router.put('/items/claim/:id/:acceptedBy', (req, res) => {
+router.put('/items/claim/:id', (req, res) => {
   const id = req.params.id;
-  const user = req.params.acceptedBy;
+  const user = req.body.acceptedBy;
   const type = req.body.type;
   let status;
 
