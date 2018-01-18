@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const jsonParser = bodyParser.json();
 const { Item } = require('./model');
 const router = express.Router();
+const passport = require('passport');
+
+const { router: jwtStrategy } = require('../../auth');
 
 router.use(jsonParser);
 
@@ -23,6 +26,12 @@ router.get('/items', (req, res) => {
       res.status(500).json({message: 'Internal Server Error'});
     });
 });
+
+
+passport.use(jwtStrategy);
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+router.use(jwtAuth);
 
 router.get('/items/:id', (req, res) => {
   const id = req.params.id;
@@ -104,21 +113,21 @@ router.put('/items/:id/:acceptedBy', (req, res) => {
   let status;
 
   switch(type){
-    case 'Free':
-    status = 'Claimed'
+  case 'Free':
+    status = 'Claimed';
     break;
-    case 'Loan':
-    status = 'On Loan'
+  case 'Loan':
+    status = 'On Loan';
     break;
-    case 'Sell':
-    status = 'Purchased'
+  case 'Sell':
+    status = 'Purchased';
     break;
   }
 
   Item.findById(id)
   .then(item => {
     Item.findByIdAndUpdate(id, {acceptedBy: user, status: status})
-    .then(() => res.status(204).end())
+    .then(() => res.status(204).end());
   });
 });
   // find one (id); return type, then based on this type; status should be xxx - swtich in here
@@ -175,6 +184,6 @@ router.delete('/items/:id', (req, res) => {
       .catch(err => {
         res.status(500).send({message: 'Internal Server Error'});
       }); // error handler
-  });
+});
 
 module.exports = router;
