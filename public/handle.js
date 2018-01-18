@@ -79,6 +79,20 @@ let handle = {
     .catch(err => console.error(`Error: ${err.message}`));
   },
 
+  returnItem: function(event, id){
+    event.preventDefault();
+    const el = $(event.target);
+    let returnDocument;
+    returnDocument = {id: id, acceptedBy: STORE.currentUser};
+
+    api.returnItem(returnDocument)
+    .then(res =>{
+      STORE.view = 'list';
+      render.view();
+    })
+    .catch(err => console.error(`Error: ${err.message}`));
+  },
+
   delete: function(event){
     event.preventDefault();
     const itemId = $(event.currentTarget).data('item-id');

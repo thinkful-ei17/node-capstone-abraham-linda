@@ -100,7 +100,7 @@ let api = {
   },
 
   editItem: function(editedDocument) {
-    const url = buildUrl(`/api/v1/items/${editedDocument.id}`);
+    const url = buildUrl(`/api/v1/items/edit/${editedDocument.id}`);
     return fetch(url, {
       method: 'PUT',
       headers: new Headers({
@@ -115,15 +115,28 @@ let api = {
   },
 
   claimItem: function(claimDocument) {
-    const url = buildUrl(`/api/v1/items/${claimDocument.id}/${claimDocument.acceptedBy}`);
-    console.log('what is in claimDocument', claimDocument);
-    console.log('what is url', url);
+    const url = buildUrl(`/api/v1/items/claim/${claimDocument.id}`);
     return fetch(url, {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json',
       }),
       body: JSON.stringify(claimDocument),
+    })
+    .then(normalizeResponseErrors)
+    .catch(err => {
+      console.error(`Error: ${err.message}`);
+    });
+  },
+
+  returnItem: function(returnDocument) {
+    const url = buildUrl(`/api/v1/items/return/${returnDocument.id}`);
+    return fetch(url, {
+      method: 'PUT',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(returnDocument),
     })
     .then(normalizeResponseErrors)
     .catch(err => {

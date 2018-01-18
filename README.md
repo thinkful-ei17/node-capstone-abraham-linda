@@ -77,7 +77,7 @@ store = {
 12. [x] Add 'Create' Route for adding a new item (API)
 13. [x] Add 'Update' Route for editing an existing item (API) 
 14. [x] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:acceptedBy` (Linda)
-15. [ ] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true` (Linda)
+15. [x] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true` (Linda)
 16. [x] Add 'Delete' Route for delete an existing item (API) `/api/v1/item/:id`
 17. [x] Add View for Creation screen (Client)
 18. [x] Add View for Edit screen  (Client)
@@ -95,11 +95,12 @@ store = {
 30. [ ] Stretch - Add user collection and update user contextswitcher to use user db
 31. [ ] more a11y friendly (Abe)
 32. [x] update image to accept user image provided rather than default (Abe)
-33. [ ] update and add tests! (Abe)
+33. [ ] update and add tests! (Abe) (Linda)
 34. [x] update seedData on mLab (missing '.')
 35. [ ] css cleanup (ex. new item submit button not inline with cancel button) (Abe)(Linda)
 36. [x] general housekeeping (Abe)(Linda)
 37. [ ] second pass at general housekeeping (Abe)(Linda)
+38. [x] create/edit presentation slides (Abe)(Linda)
 
 #Future Features/Extensions
 1. Ability to flag a broken item borrowed (ie. Bob B. borrows Alice A. patio charis, they broke so Alice A. and/or Bob B. has ability to flag as broken) 

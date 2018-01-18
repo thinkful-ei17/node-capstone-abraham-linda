@@ -61,4 +61,11 @@ jQuery(function ($) {
     handle.claimItem(e, itemId, itemType);
   });
 
+   // This wires the "Return" button on the "List" view
+   $('.js-view').on('click','.return-btn', function(e) {
+    e.preventDefault();
+    const itemId = $('.return-btn').data('item-id');
+    handle.returnItem(e, itemId);
+  });
+
 }); 
