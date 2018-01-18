@@ -102,7 +102,7 @@ store = {
 37. [ ] second pass at general housekeeping (Abe)(Linda)
 
 #Future Features/Extensions
-1. Flag broken resources
+1. Ability to flag a broken item borrowed (ie. Bob B. borrows Alice A. patio charis, they broke so Alice A. and/or Bob B. has ability to flag as broken) 
 2. Search function
 3. Filter/Sort function
 4. Comment function
