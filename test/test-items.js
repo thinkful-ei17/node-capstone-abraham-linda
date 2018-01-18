@@ -193,7 +193,7 @@ describe('Item API resource', function() {
           // make request then inspect it to make sure it reflects
           // data we sent
           return chai.request(app)
-            .put(`/api/v1/items/${item.id}`)
+            .put(`/api/v1/items/edit/${item.id}`)
             .send(updateData);
         })
         .then(function(res) {
