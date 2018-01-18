@@ -1,83 +1,193 @@
-.On-Loan,
-.Purchased,
-.Claimed {
-  color: #ce0b0b;
+/*
+* Add Styles for column layout (without relying on bootstrap) 
+* Referencing unit 1 lesson 6 @ Thinkful
+*/
+
+* {
+  box-sizing: border-box;
 }
 
-.Borrow,
-.Claim,
-.Make-Offer{
-  color: #067c06;
+@media only screen and (min-width: 320px) {
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: #212121;
+    background-color: #ffffff;
+    border-top: 20px solid #0288d1;
+  }
+  
+  .logo {
+    display: block;
+    font-size: 1.8em;
+    text-align: center;
+    color: #ffffff;
+  }
+
+header{
+  background-color:#03a9f4;
+  padding-bottom: 10px;
 }
 
-.listing{
-  border:1px solid slategray;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.item-info{
-padding-left: 15px;
-padding-top: 15px;
-width: 80%;
-}
-.actions{
-display: flex;
-flex-direction: column;
-width: 20%;
-}
-
-.js-status-tag{
-  width: 130px;
-  height: 40px;
-  color: grey;
-  display: inline-block;
-  font-weight: 400;
+.js-welcome {
+  color: #b3e5fc;
   text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  border: 1px solid grey;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: .25rem;
 }
 
-.action-btn,
-.edit-btn,
-.delete-btn{
-  width: 130px;
-  height: 40px;
-}
-
-.create-btn{
-  width: 130px;
-  height: 40px;
+ 
+  
+  .listing {
+    border: 1px solid #bdbdbd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .item-info {
+    padding-left: 15px;
+    padding-top: 15px;
+    width: 80%;
+  }
+  
+  .actions {
+    text-align: center;
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .actions p{
+    color: #757575;
+  }
+  
+.actions button{
+  width: 80%;
+  min-height: 40px;
+  margin-left: auto;
   display: block;
+  margin-right: auto;
+  margin-bottom: 20px;
 }
 
-.js-view-form{
-  margin-left: 0px;
-  margin-right: 0px;
-  width: 70%;
-  border: 2px solid black;
-  margin-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
+  .btn,
+  .js-status-tag
+  {
+    width: 80%;
+    height: 40px;
+    color: #757575;
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid #bdbdbd;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:10px;
+  }
+  
+
+.btn{
+  color: #ffffff;
+  background-color:#448aff;
+  border:none;
 }
 
-.submit-edit-btn, 
-.cancel-btn{
-  margin-top: 15px;
+  .action-btn,
+  .edit-btn,
+  .delete-btn {
+    width: 130px;
+    height: 40px;
+  }
+  
+  .create-btn {
+    margin-top: 20px;
+    width: 130px;
+    height: 40px;
+    display: block;   
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  form {
+    width: auto;
+  }
+  .js-view-form {
+    /* margin-left: 0px;
+    margin-right: 0px;
+    width: 70%;
+    border: 2px solid black;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px; */
+  }
+  
+  .submit-edit-btn,
+  .cancel-btn {
+    margin-top: 15px;
+  }
+  
+  .js-title,
+  .js-image,
+  .js-type,
+  .js-description,
+  .js-status {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  } 
+
+  .js-mvp-user select.user {
+    display: block;
+    min-height: 40px;
+    width: 130px;
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+  }
+
+  footer{
+    color: #b3e5fc;
+    background-color: #0288d1;
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+    font-weight: lighter;
+  }
 }
 
-.js-title, 
-.js-image, 
-.js-type,  
-.js-description,
-.js-status{
-  margin-top:5px;
-  margin-bottom:5px;
+@media only screen and (min-width: 640px) {
+  .actions button,
+  .js-status-tag{
+    width: 130px;
+    display: inline-block;
+    text-align: center;
+  } 
+   .actions button{  
+    display: block;
+  }
 }
+
+@media only screen and (min-width: 1024px) {
+  .logo {
+    text-align: left;
+    padding-left: 30px;
+  }
+
+
+
+  header,
+  main
+  {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
