@@ -1,5 +1,17 @@
 [![Build Status](https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda.svg?branch=master)](https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda)
 
+##Files
+- (client) app.js > user performs action (ie. click) > executes (!)handle callback
+- (client) handle.js > executes (!)fetch, receives returned promise from fetch, modifies STORE (ie. STORE.view), and executes (!)render > 
+- (client) fetch.js > calls server (!)router, retrieves data, and returns promise >
+- (client) render.js > inject HTML
+- (client) index.html and style.css - structure and style application
+- (BE) router.js > CRUD req and res > returns promise
+- (BE) model.js > schema and instance method (serialize)
+- (BE) primer-itemdataset.json > primer/seed data
+- (BE) server.js > run and close server, designate router file
+- (BE) config.js > configure database
+
 ## Endpoints
 
 | Method | Endpoint | Description |
@@ -72,7 +84,7 @@ store = {
 19. [x] Add "Action" button functions for "Borrow, Claim, Make Offer" ", etc (Client) (Linda)
 20. [x] Fix - next is used with middleware therefore not needed; updated to have error msgs. (Abe)
 21. [x] Add 'Cancel' Button to 'Create' Page
-22. [ ] Go through code and add error catches 
+22. [x] Go through code and add error catches (Linda)
 23. [x] Fix mvp - user render on change
 24. [x] Add 'Delete' Button to 'List' Page
 25. [x] Add 'Edit' Button to 'List' Page
@@ -86,7 +98,14 @@ store = {
 33. [ ] update and add tests! (Abe)
 34. [x] update seedData on mLab (missing '.')
 35. [ ] css cleanup (ex. new item submit button not inline with cancel button) (Abe)(Linda)
+36. [x] general housekeeping (Abe)(Linda)
+37. [ ] second pass at general housekeeping (Abe)(Linda)
 
+#Future Features/Extensions
+1. Ability to flag a broken item borrowed (ie. Bob B. borrows Alice A. patio charis, they broke so Alice A. and/or Bob B. has ability to flag as broken) 
+2. Search function
+3. Filter/Sort function
+4. Comment function
 
 #Pain Points
 1. be cautious with referencing older code because no set pattern ex. syntax can change with different version dependencies (libraries). Ex. test -should vs. shouldOf; should vs. accept; fetch headers vs. New Headers
@@ -98,6 +117,8 @@ store = {
 3. Understand which database you want to work with and why one works better than another option
 4. Time Management - rule of thumb: task X by Pi
 5. Start out with proper understanding of MVP 
+6. Approach - everyday is demoable
+
 
 #User Stories
 As a x I want to do y
@@ -124,7 +145,7 @@ As a x I want to do y
                 - Also has "Edit" and "Delete" button
             b. Viewer - "Claim" button - Once clicked, tied to ID and no other user can claim
 
-# LOGIC
+#LOGIC
 "postedBy": 'Alice A.'
 "acceptedBy": 'Charlie C.'
 "type": 'Loan',
@@ -180,97 +201,33 @@ if
 <button disable name=${item.status}>${item.status}</button>
 </div>
 `
+#MVP Requirements
+1. [x] Create a client
+2. [x] Serve static files (ex. image, logo)
+3. [x] Implement REST API w/CRUD operations
+4. [x] Comprehensive Test for API layer (required: positive, optional: negative)
+5. [x] Use Continuous Integration (Travis CI and Heroku)
+6. [x] Use mongo for db
 
 
-MVP
-#Create a client
-?
+#####----BELOW----Other notes from initial planning----BELOW----#####
+#Questions
+1. Best approach to start implementation: 
+    1) build working client with dummy data OR 
+    2) build working API, then client ANSWER: Backend first!
+2. if using Mongoose, what are options for relationships/linking related collections: 
+    1) (1 to few) Seen - subdocuments array of objects inside user/resource object (not best for all jobs), good for user with 1-50 items. There is a limit to the size of a single mongo object (~16mb) Upside: Faster OR 
+    2) (Many to Many) - in between - ex. user has array in it and in the array are a bunch of ids referencing collection; instead of document on user, put reference / "array of references/ids" OR 
+    3) (1 to scillions) - like postgres - user associated scillions (ex. messages, chat app), all messages have property that points to id of owner UPSIDE: Quantity
+    HELPFUL LINK: https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1
 
-#Serve static files
-+Profile image for each user (face)
-+Image of resource sharing (icon)
-+mock logo
-
-#Implement REST API w/CRUD operations
-+User
--New user signup - POST: /api/user
--
-
-#Comprehensive Test for API layer
-
-#Use Continuous Integration
-
-
-
-    # node-capstone-abraham-linda
-
-Questions
-- best approach to start implementation 1) build working client with dummy data OR 2) build working API, then client (BACKEND FIRST!)
--keys foreign/primary join : for Mongo????? relationship - link collections with related. 
-Options for relationships
-1) seen - subdocuments array of objects inside user/resource object (not best for all jobs), good for user with 1-50 items, 1 to many - limit to size of single mongo object (16mb) 
-FASTER
-2) in between - many to many - User has array in it, in array - a bunch of ids referencing collection; instead of document on user, put reference / "array of references/ids"
-3) like postgres - user associated with 1 to squillions (ex. messages, chat app), all messages have property that points to id of owner
-QUANTITY
-
-https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1
-
-
-Starting Requirements
-4 users 
-1 - community manager (paid)
-2 - resident (unpaid)
-3 - resident
-4 - resident
-
-
-CREATE TABLE Users(
-id serial primary key,
-username text not null,
-email text not null,
-profileimage text not null,
-community_id int references community(id)
-)
-
-translate this into Mongo????
-Mongo structure can change - we can add communty at a later time
-
-
-Mockup of what User and Resource would look like
-
-USER
-- username
-- password
-- firstName
-- lastName
-
-Resource
--Type (ex. FREE, LOAN, SELL)
--Name of resource
--Description
--Quantity
--
-
-
+#####----BELOW----ASPIRING APPLICATION----BELOW----#####
 
 #User Story
-USE MONGO for db!
 Single Apt/Community - structure to support future scalability, stick to users only (CM another time)
-Application/Feature: Resource Sharing (list, comment, check-in/out, )
-
+Application/Feature: Resource Sharing (list, comment, check-in/out)
 button item check out > click > userID creates user to borrower relationship and flag for checked out status
-
 Checkin > click userwithvalid ID > 
-
-
- until i return it or resrouce 
-CRUD
-MAKE SURE IT WORKS!!!!! EVERYDAY DEMOABLE
-
-TIME MGMT:
-TASK * PI
-AUTHENTICATION IS A FULL DAY!
 
 As a x I want to do y
 + Community Manager - sign up to account to manage my community
@@ -287,52 +244,43 @@ As a x I want to do y
 + User - add post to community board
 + User - delete own post on community board
 + User - see old community board posts
-+ User - 
 
-
-MVP
-#Create a client
-?
-
-#Serve static files
-+Profile image for each user (face)
-+Image of resource sharing (icon)
-+mock logo
-
-#Implement REST API w/CRUD operations
-+User
--New user signup - POST: /api/user
--
-
-#Comprehensive Test for API layer
-
-#Use Continuous Integration
-
-
+#Features
 Resource Sharing - Free stuff, borrowing items, rideshare (board and in user profile(future feature))
 Community Message Board - general message (open to all users), ability to post, delete, update, comment
 Alert Board - Broadcast message (only community manager); 
 
+#Mockup
+4 users 
+1 - community manager (paid)
+2 - resident (unpaid)
+3 - resident
+4 - resident
 
-
-Future Features/Extension:
-+add bootstrap columns
-+ability to check-in, out, flag broken
-
-resource
+CREATE TABLE Users(
+id serial primary key,
+username text not null,
+email text not null,
+profileimage text not null,
+community_id int references community(id)
+password
+firstName
+lastName
+)
 
 user_resource
 
 borrower_id, resource_id, owner_id
 
-+Community Manager - approve each resident that signs up for my community
-Security - only community manager can provide final approval of new resident +access to application
-Location -
-+Additional Access - Guests (request parking) and Vendor Accounts +(advertisement/specials)
-+Expansion - Neighborhood/Complex(!)>District>City>State
-+Rent Payment (more secure than other alternatives, cost less to process?)
-+Community Manager access to administrative actions (delete posts, etc.)
-+User to User communication
-+User to Group Selected communication
-+Community Manager to User communication
-+Community Manager to Group Selected communication
+#Future Feature/Extensions
+- Community Manager - approve each resident that signs up for my community
+- Security - only community manager can provide final approval of new resident +access to application
+- Location
+- Additional Access - Guests (request parking) and Vendor Accounts +(advertisement/specials)
+- Expansion - Neighborhood/Complex(!)>District>City>State
+- Rent Payment (more secure than other alternatives, cost less to process?)
+- Community Manager access to administrative actions (delete posts, etc.)
+- User to User communication
+- User to Group Selected communication
+- Community Manager to User communication
+- Community Manager to Group Selected communication

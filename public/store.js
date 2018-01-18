@@ -2,7 +2,6 @@
 
 
 const STORE = {
-  view: 'list',       // current view: list | details | create | edit 
-  currentUser: 'Alice A.',          //current user account
-  newItemData: null,
+  view: 'list',       // current view: list | create | edit 
+  currentUser: 'Alice A.',  //current user account
 };
