@@ -61,9 +61,11 @@ let render = {
         </div>
         <div class="actions">
         <p>Posted by: ${item.postedBy}</p>
-        <p>${(item.acceptedBy ? item.status+' by: '+item.acceptedBy : '')}</p>
+        <p>${(((item.acceptedBy) && (item.type !== 'Loan')) ? item.status+' by: '+item.acceptedBy : '')}</p>
+        <p>${(((item.acceptedBy !== null) && (item.type === 'Loan') && (item.status !== 'Borrow'))? item.status+' by: '+item.acceptedBy : '')}</p>
         ${(((item.status === 'Borrow' || item.status === 'Claim' || item.status === 'Make Offer') && (item.postedBy !== STORE.currentUser)) ? `<button type="button" data-item-id="${item._id}" data-item-type="${item.type}" class="action-btn btn ${item.status.replace(' ','-')}">${item.status}</button>` : '')}
         ${((item.status === 'On Loan' || item.status === 'Claimed' || item.status === 'Purchased') ? `<div class="js-status-tag"> ${item.status} </div>`: '')}
+        ${((item.status === 'On Loan' && item.acceptedBy === STORE.currentUser) ? `<button type="button" data-item-id="${item._id}" data-item-status="${item.status}" class="btn btn-info return-btn">Return</button>` : '')}
         ${(item.postedBy === STORE.currentUser ? `<button type="button" data-item-id="${item._id}" class="btn btn-info edit-btn">Edit</button>`:'')}
         ${(item.postedBy === STORE.currentUser ? `<button type="button" data-item-id="${item._id}" class="btn btn-danger delete-btn">Delete</button>`:'')}
         
@@ -134,11 +136,6 @@ let render = {
     $('.js-view > form#edit').find('.js-description').val(item.description);
   },
 
-  claimItem: function(item) {
-    const createTemplate = this._renderForm('create');
-    $('.js-view').html(createTemplate);
-  },
-  
 };
 
 $(() =>{

@@ -87,6 +87,43 @@ router.post('/items', jsonParser, (req, res) => {
     .catch(err => console.error(`Error: ${err.message}`)); //error handler
 });
 
+//Return toggle
+//PUT (Update) method endpoint '/items/:id'
+//Update existing item ('Return' button)
+//capture id parameter value
+//capture status body value
+//capture acceptedBy body value
+//set status back to 'Borrow'
+//set acceptedBy back to null
+//find item in Items db by id, then update values for acceptedBy and status
+router.put('/items/:id', (req, res) => {
+  const id = req.params.id;
+  const type = req.body.type;
+
+   /***** Never trust users - validate input *****/
+  const requiredFields = ['acceptedBy', 'status', 'type'];
+
+  const missingFields = requiredFields.filter(field => !(field in req.body)); //only returns 1 missing field (stops at first field fail)
+//if you use find - name in singular
+
+  Item.findById(id)
+  .then(item => {
+    if ((item.type === 'Loan') && (item.status === 'On Loan')) {
+      let acceptedBy = null;
+      let status = 'Borrow';
+        Item.findByIdAndUpdate(id, {acceptedBy: acceptedBy, status: status})
+        .then(() => res.status(204).end()) //204 handler
+        .catch(err => console.error(`Error: ${err.message}`)); //error handler
+    } else {
+      res.status(404).end(); // 404 handler
+    }
+  })
+  .catch(err => {
+    res.status(500).send({message: 'Internal Server Error'});
+  });  // error handler
+});
+
+//Edit feature
 //PUT (Update) method endpoint '/items/:id'
 //Update existing item ('Edit' button)
 //validate if updateable fields are included in the request body
@@ -115,8 +152,8 @@ router.put('/items/:id', (req, res) => {
     .catch(err => console.error(`Error: ${err.message}`)); //error handler
 });
 
-
-//PUT (Update) method endpoint '/items/:id'
+//Action Buttons
+//PUT (Update) method endpoint '/items/:id/:acceptedBy'
 //Update existing item ('Claim', 'Purchase', 'Borrow' buttons)
 //capture id parameter value
 //capture acceptedBy user parameter value (user who clicked button)
@@ -124,7 +161,6 @@ router.put('/items/:id', (req, res) => {
 //based on type, set status
 //find item in Items db by id, then update values for acceptedBy and status
 router.put('/items/:id/:acceptedBy', (req, res) => {
-  console.log('router ran');
   const id = req.params.id;
   const user = req.params.acceptedBy;
   const type = req.body.type;
@@ -142,11 +178,8 @@ router.put('/items/:id/:acceptedBy', (req, res) => {
     break;
   }
 
-  Item.findById(id)
-  .then(item => {
     Item.findByIdAndUpdate(id, {acceptedBy: user, status: status})
     .then(() => res.status(204).end()) //204 handler
-  })
   .catch(err => console.error(`Error: ${err.message}`)); //error handler
 });
 

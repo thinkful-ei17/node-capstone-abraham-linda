@@ -100,6 +100,7 @@ store = {
 35. [ ] css cleanup (ex. new item submit button not inline with cancel button) (Abe)(Linda)
 36. [x] general housekeeping (Abe)(Linda)
 37. [ ] second pass at general housekeeping (Abe)(Linda)
+38. [x] create/edit presentation slides (Abe)(Linda)
 
 #Future Features/Extensions
 1. Ability to flag a broken item borrowed (ie. Bob B. borrows Alice A. patio charis, they broke so Alice A. and/or Bob B. has ability to flag as broken) 
