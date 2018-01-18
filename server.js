@@ -4,21 +4,43 @@ const express = require('express');
 const morgan = require('morgan');
 const { PORT, DATABASE_URL } = require('./config');
 const itemsRouter = require('./items/v1/router');
-const bodyParser = require('body-parser');const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const passport = require('passport');
 
 const app = express();
+
+
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+mongoose.Promise = global.Promise;
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.use('/api/users/', usersRouter);
+app.use('/api/auth/', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
 
 // Middleware
 app.use(morgan('common'));
 app.use(bodyParser.json());
-app.use('/api/v1',itemsRouter);
 
-const path = require('path'); //needed to test html file (static)
-app.use(express.static(path.join(__dirname, 'public'))); //needed to test html file (static)
 
 app.get('/api/v1', (req, res)=>{
   res.json({message: 'Hello World, from project Sharing is Caring!'}); //test server
 });
+
+app.use('/api/v1', jwtAuth, itemsRouter);
+
+const path = require('path'); //needed to test html file (static)
+app.use(express.static(path.join(__dirname, 'public'))); //needed to test html file (static)
+
+
+
 
 let server;
 

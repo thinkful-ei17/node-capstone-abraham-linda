@@ -18,14 +18,19 @@
   },
   "homepage": "https://github.com/thinkful-ei17/node-capstone-abraham-linda#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "faker": "^4.1.0",
+    "jsonwebtoken": "^8.1.0",
     "mocha": "^4.1.0",
     "mongoose": "^4.13.9",
     "morgan": "^1.9.0",
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.14.11",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "passport-local": "^1.0.0"
   }
 }
