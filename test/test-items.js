@@ -29,6 +29,12 @@ function seedItemData() {
   for (let i=1; i<=10; i++) {
     seedData.push(generateCreateItemData());
   }
+
+  //For future test
+  // for (let i=1; i<=10; i++) {
+  //   seedData.push(generateEditItemData());
+  // }
+
   // this will return a promise
   return Item.insertMany(seedData);
 }
@@ -58,6 +64,28 @@ function generateRandomTypeAndStatus(){
   return {type: randomType, status: randomStatus};
 }
 
+
+// Future test use
+// function generateRandomTypeAndStatusEdit(){
+//   const types = ['Loan','Sell','Free'];
+
+//   const randomType = randomize(types);
+//   let randomStatus;
+//   switch(randomType){
+//   case 'Loan':
+//     randomStatus = 'On Loan';
+//     break;
+//   case 'Sell':
+//     randomStatus = 'Purchased';
+//     break;
+//   case 'Free':
+//     randomStatus = 'Claimed';
+//     break;
+//   }
+ 
+//   return {type: randomType, status: randomStatus};
+// }
+
 // generate an object representing an item.
 // can be used to generate seed data for db
 // or request.body data
@@ -77,19 +105,26 @@ function generateCreateItemData() {
 }
 
 function generateEditItemData() {
+  let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
   let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
-
-  return { acceptedBy: aName };
+  return {
+    name: faker.commerce.productName(),
+    type: 'Loan',
+    description: faker.lorem.sentence(),
+    postedBy: pName,
+    acceptedBy: aName,
+    status: 'On Loan'
+  };
 }
 
 // this function deletes the entire database.
 // we'll call it in an `afterEach` block below
 // to ensure data from one test does not stick
 // around for next one
-// function tearDownDb() {
-//   console.warn('Deleting database');
-//   return mongoose.connection.dropDatabase();
-// }
+function tearDownDb() {
+  console.warn('Deleting database');
+  return mongoose.connection.dropDatabase();
+}
 
 describe('Item API resource', function() {
 
@@ -107,10 +142,10 @@ describe('Item API resource', function() {
     return seedItemData();
   });
 
-  // afterEach(function() {
-  //   console.log('API resource afterEach ran');
-  //   return tearDownDb();
-  // });
+  afterEach(function() {
+    console.log('API resource afterEach ran');
+    return tearDownDb();
+  });
 
   after(function() {
     console.log('API resource after ran');
@@ -141,7 +176,7 @@ describe('Item API resource', function() {
           expect(res.body).to.have.lengthOf(count);
         });
     });
-  }); 
+  });   
 
   describe('POST endpoint', function() {
     // strategy: make a POST request with data,
@@ -170,8 +205,50 @@ describe('Item API resource', function() {
   });
 
   /**
+   * Test the PUT endpoint where we can return an existing item.
+   * A PUT would also be used when testing the functionality users returning
+   * an item.
+   */
+  describe('PUT endpoint', function() {
+    it('should update fields you send over for return', function() {
+      let pName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
+      let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
+      const updateData = {
+        acceptedBy: aName,
+        type: 'Loan',
+        status: 'On Loan'
+      }
+
+      const newItem = generateEditItemData();
+      return chai.request(app)
+        .post('/api/v1/items')
+        .send(newItem)
+        .then(function(res) { return Item.findById(res.body.id);});
+
+      return Item
+        .findOne({status: 'On Loan'})
+        .then(function(item) {
+          updateData.id = item._id;  
+      
+      return chai.request(app)      
+        .put(`/api/v1/items/return/${item._id}`)
+        .send(updateData)
+        .then(function(res) {
+          expect(res).to.have.status(204);
+
+      return Item.findById(updateData.id);
+        })
+        .then(function(item) {
+          expect(item.type).to.equal(updateData.type);
+          expect(item.acceptedBy).to.equal(null);
+          expect(item.status).to.equal('Borrow');
+        });
+    });
+  });
+});  
+  /**
    * Test the PUT endpoint where we can edit an existing item.
-   * A PUT would also be used when testing the functionality users accepting
+   * A PUT would also be used when testing the functionality users editing
    * an item.
    */
   describe('PUT endpoint', function() {
@@ -188,12 +265,12 @@ describe('Item API resource', function() {
       return Item
         .findOne()
         .then(function(item) {
-          updateData.id = item.id;
+          updateData.id = item._id;
 
           // make request then inspect it to make sure it reflects
           // data we sent
           return chai.request(app)
-            .put(`/api/v1/items/edit/${item.id}`)
+            .put(`/api/v1/items/edit/${item._id}`)
             .send(updateData);
         })
         .then(function(res) {
@@ -208,6 +285,47 @@ describe('Item API resource', function() {
           expect(item.description).to.equal(updateData.description);
           expect(item.postedBy).to.not.equal(null);
           expect(item.status).to.not.equal(null);
+        });
+    });
+  });
+
+   /**
+   * Test the PUT endpoint where we can claim an existing item.
+   * A PUT would also be used when testing the functionality users claiming
+   * an item.
+   */
+  describe('PUT endpoint', function() {
+    it('should update fields you send over for claim', function() {
+      let aName = `${faker.name.firstName()} ${faker.name.lastName().substring(0,1)}.`;
+      const randomized = generateRandomTypeAndStatus();
+      const updateData = {
+        type: randomized.type,
+        acceptedBy: aName,
+        status: randomized.type,
+      };
+
+      return Item
+        .findOne({status: {$nin : ["On Loan", "Purchased", "Claimed"]}})
+        .then(function(item) {
+          updateData.id = item._id;
+
+          // make request then inspect it to make sure it reflects
+          // data we sent
+          return chai.request(app)
+            .put(`/api/v1/items/claim/${item._id}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+
+          return Item.findById(updateData.id);
+        })
+        .then(function(item) {
+          expect(item.status).to.not.equal('Borrow');
+          expect(item.status).to.not.equal('Purchase');
+          expect(item.status).to.not.equal('Claim');
+          expect(item.status).to.not.equal(null);
+          expect(item.acceptedBy).to.equal(updateData.acceptedBy);
         });
     });
   });
@@ -238,3 +356,4 @@ describe('Item API resource', function() {
     });
   });
 });
+

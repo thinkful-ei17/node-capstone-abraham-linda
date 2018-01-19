@@ -89,7 +89,7 @@ router.post('/items', jsonParser, (req, res) => {
 
 
 //Return toggle
-//PUT (Update) method endpoint '/items/:id'
+//PUT (Update) method endpoint '/items/return/:id'
 //Update existing item ('Return' button)
 //capture id parameter value
 //capture status body value
@@ -123,7 +123,7 @@ router.put('/items/return/:id', (req, res) => {
 });
 
 //Edit feature
-//PUT (Update) method endpoint '/items/:id'
+//PUT (Update) method endpoint '/items/edit/:id'
 //Update existing item ('Edit' button)
 //validate if updateable fields are included in the request body
 //obtain the new fields/values desired from req.body
@@ -152,7 +152,7 @@ router.put('/items/edit/:id', (req, res) => {
 });
 
 //Action Buttons
-//PUT (Update) method endpoint '/items/:id/:acceptedBy'
+//PUT (Update) method endpoint '/items/clain/:id/:acceptedBy'
 //Update existing item ('Claim', 'Purchase', 'Borrow' buttons)
 //capture id parameter value
 //capture acceptedBy user parameter value (user who clicked button)
