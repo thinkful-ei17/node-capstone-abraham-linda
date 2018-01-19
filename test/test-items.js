@@ -212,45 +212,6 @@ describe('Item API resource', function() {
     });
   });
 
-    /**
-   * Test the PUT endpoint where we can return a borrowed item.
-   * A PUT would also be used when testing the functionality users accepting
-   * an item.
-   
-  describe('PUT endpoint', function() {
-    it('should update fields you send over for return', function() {
-      const updateData = {
-        status: 'Borrow',
-        acceptedBy: null,
-      };
-
-      return Item
-        .findOne()
-        .then(function(item) {
-          updateData.id = item.id;
-
-          // make request then inspect it to make sure it reflects
-          // data we sent
-          return chai.request(app)
-            .put(`/api/v1/items/return/${item.id}`)
-            .send(updateData);
-        })
-        .then(function(res) {
-          expect(res).to.have.status(204);
-
-          return Item.findById(updateData.id);
-        })
-        .then(function(item) {
-          expect(item.name).to.equal(updateData.name);
-          expect(item.image).to.equal(updateData.image);
-          expect(item.type).to.equal(updateData.type);
-          expect(item.description).to.equal(updateData.description);
-          expect(item.postedBy).to.equal(null);
-          expect(item.status).to.equal('Borrow');
-        });
-    });
-  });
-
   /**
    * Test the Delete endpoint to make sure that we can successfully remove
    * an item by calling the DELETE method.
