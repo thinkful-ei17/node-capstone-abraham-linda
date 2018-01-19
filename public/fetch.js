@@ -51,6 +51,23 @@ let api = {
       .then(res => res.json());
   },
 
+  login: function(username,password){
+    const userLogin = {username, password};
+    const url = buildUrl('/api/auth/login');
+    return fetch(url, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(userLogin),
+    })
+    .then(normalizeResponseErrors)
+    .then(res => res.json())
+    .catch(err => {
+      console.error(err.message);
+    });
+  },
+
   listUsers: function(){
     // This may be replaced with a users db collection if time permits
     const users  = ['Alice A.', 'Bob B.', 'Charlie C.', 'David D.'];
@@ -62,7 +79,8 @@ let api = {
     return fetch(url, {
       method: 'GET', 
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'authorization': 'Bearer '+STORE.sessionToken
       }
     })
     .then(normalizeResponseErrors)

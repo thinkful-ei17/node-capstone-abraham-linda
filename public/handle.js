@@ -4,6 +4,18 @@
 
 let handle = {
   
+  login: function(event){
+    const username = $(event.currentTarget).prevAll('input[name="username"]').val();
+    const password = $(event.currentTarget).prevAll('input[name="password"]').val();
+    api.login(username, password).then(result =>{
+      console.log(result);
+      STORE.sessionToken = result.authToken;
+      STORE.view = 'list';
+      api.welcome().then(response => render.welcome(response));  
+      render.view();
+    });
+  },
+
   create: function(event) {
     event.preventDefault();
     STORE.view = 'create';
@@ -132,6 +144,10 @@ function handlersInit(){
     const itemId = $('.action-btn').data('item-id');
     const itemType = $('.action-btn').data('item-type');
     handle.claimItem(e, itemId, itemType);
+  });
+
+  $('.js-welcome').on('click', '.js-login', e => {
+    handle.login(e);
   });
 
 }
