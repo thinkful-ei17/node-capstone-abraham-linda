@@ -9,6 +9,7 @@ let handle = {
     const password = $(event.currentTarget).prevAll('input[name="password"]').val();
     api.login(username, password).then(result =>{
       console.log(result);
+      STORE.currentUser = username;
       STORE.sessionToken = result.authToken;
       STORE.view = 'list';
       api.welcome().then(response => render.welcome(response));  

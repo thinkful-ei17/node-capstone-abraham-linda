@@ -93,7 +93,8 @@ let api = {
     return fetch(url, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'authorization': 'Bearer '+STORE.sessionToken
       }
     })
     .then(normalizeResponseErrors)
@@ -107,6 +108,7 @@ let api = {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
+        'authorization': 'Bearer '+STORE.sessionToken
       }),
       body: JSON.stringify(newItem),
     })
@@ -123,6 +125,7 @@ let api = {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json',
+        'authorization': 'Bearer '+STORE.sessionToken
       }),
       body: JSON.stringify(editedDocument),
     })
@@ -140,6 +143,7 @@ let api = {
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json',
+        'authorization': 'Bearer '+STORE.sessionToken
       }),
       body: JSON.stringify(claimDocument),
     })
