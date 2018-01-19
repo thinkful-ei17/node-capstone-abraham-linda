@@ -15,6 +15,11 @@
 let render = {
 
   view: function(id=null) {
+
+    if(STORE.view === 'login'){
+      this.login(); 
+    }
+
     if(STORE.view === 'list') {
       api.listItems().then(response => this.listItems(response));
     }
@@ -30,6 +35,44 @@ let render = {
     const message = response.message;
     const createItemButton =  '<button type="button" class="create-btn">List New Item</button>';
     $('.js-welcome').html(message).append(createItemButton);
+  },
+
+  login: function(){
+    const loginHtml=`
+    <div class="login-box">
+            <div>
+              <h1>Login</h1>
+              <p>Sign In to your account</p>
+              <div>
+                <label for="username"></label>
+                <input type="text" placeholder="Username" name="username">
+              </div>
+              <div>
+                <label for="password"></label>
+                <input type="password" name="password" placeholder="Password">
+              </div>
+              <div>
+                <div>
+                  <button type="button">Login</button>
+                </div>
+                <div>
+                  <button type="button">Forgot password?</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>
+              <div>
+                <h2>Sign up</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <button type="button">Register Now!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    `;
+    $('.js-welcome').html(loginHtml);
   },
 
   userContextSwitcher: function(){
@@ -141,10 +184,15 @@ let render = {
   
 };
 
-$(() =>{
-  // Do stuff here e.g. call api.welcome()
-  api.welcome().then(response => render.welcome(response));
-  api.listUsers();
-  render.userContextSwitcher();
+function renderInit(){
+  
   render.view();
-});
+}
+
+// $(() =>{
+//   // Do stuff here e.g. call api.welcome()
+//   api.welcome().then(response => render.welcome(response));
+//   api.listUsers();
+//   render.userContextSwitcher();
+//   render.view();
+// });
