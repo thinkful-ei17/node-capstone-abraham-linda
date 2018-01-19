@@ -2,6 +2,6 @@
 
 
 const STORE = {
-  view: 'list',       // current view: welcome | list | create | edit 
+  view: 'signon',       // current view: signon | list | create | edit 
   currentUser: 'Alice A.',  //current user account
 };

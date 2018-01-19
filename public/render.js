@@ -15,15 +15,29 @@
 let render = {
 
   view: function(id=null) {
-    if(STORE.view === 'list') {
+    switch(STORE.view) {
+      case 'signon':
+      this.signon();
+      break;
+      case 'list':
+      api.welcome().then(response => render.welcome(response));
+      api.listUsers();
+      render.userContextSwitcher();
       api.listItems().then(response => this.listItems(response));
-    }
-    if(STORE.view === 'create') {
+      break;
+      case 'create':
       this.createItem();
-    }
-    if(STORE.view === 'edit') {
+      break;
+      case 'edit':
       this.editItem(id);
+      break;
     }
+  },
+
+  signon: function(){
+    const message = response.message;
+    const createItemButton =  '<button type="button" class="create-btn">Click Here! <br>List New Item</button>';
+    $('.js-welcome').html(message).append(createItemButton);
   },
 
   welcome: function (response) {
@@ -140,8 +154,5 @@ let render = {
 
 $(() =>{
   //Do stuff here e.g. call api.welcome()
-  api.welcome().then(response => render.welcome(response));
-  api.listUsers();
-  render.userContextSwitcher();
   render.view();
 });
