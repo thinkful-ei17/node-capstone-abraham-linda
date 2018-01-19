@@ -31,6 +31,7 @@ header{
 .js-welcome {
   color: #b3e5fc;
   text-align: center;
+  font-size: 20px;
 }
 
  
@@ -101,15 +102,33 @@ header{
     width: 130px;
     height: 40px;
   }
+
+  .action-btn:hover,
+  .edit-btn:hover,
+  .delete-btn:hover{
+    background-color: #4451ff;
+  }
+
   
   .create-btn {
     margin-top: 20px;
-    width: 130px;
-    height: 40px;
+    width: 150px;
+    height: 60px;
     display: block;   
     position: relative;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid #bdbdbd;
+    background-color: rgb(255, 166, 0);
+    color: #ffffff;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+  }
+
+  .create-btn:hover {
+    background-color: rgb(250, 155, 31);
   }
   
   form {
@@ -129,6 +148,19 @@ header{
   .submit-edit-btn,
   .cancel-btn {
     margin-top: 15px;
+  }
+
+  .cancel-btn:hover{
+    background-color: rgba(211, 211, 46, 0.911);
+  }
+
+  .delete-btn:hover{
+    background-color: rgb(241, 77, 77);
+  }
+
+  .submit-create-btn:hover,
+  .submit-edit-btn:hover{
+    background-color: #4451ff;
   }
   
   .js-title,
@@ -176,11 +208,9 @@ header{
 
 @media only screen and (min-width: 1024px) {
   .logo {
-    text-align: left;
+    text-align: center;
     padding-left: 30px;
   }
-
-
 
   header,
   main
