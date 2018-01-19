@@ -152,10 +152,26 @@ describe('Item API resource', function() {
    */
   describe('GET endpoint', function() {
     it('should return all existing items posted', function() {
+      const token = jwt.sign(
+        {
+          user: {
+            username,
+            firstName,
+            lastName
+          }
+        },
+        JWT_SECRET,
+        {
+          algorithm: 'HS256',
+          subject: username,
+          expiresIn: '7d'
+        }
+      );
       let res;
       return chai
         .request(app)
         .get('/api/v1/items')
+        .set('authorization', `Bearer ${token}`)
         .then(function(_res) {
           // so subsequent .then blocks can access response object
           res = _res;
