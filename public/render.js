@@ -17,12 +17,10 @@ let render = {
   view: function(id=null) {
     switch(STORE.view) {
       case 'signon':
-      this.signon();
+      api.welcome().then(response => render.introduction(response));
       break;
       case 'list':
-      api.welcome().then(response => render.welcome(response));
-      api.listUsers();
-      render.userContextSwitcher();
+      api.welcome().then(response => render.welcome(response))
       api.listItems().then(response => this.listItems(response));
       break;
       case 'create':
@@ -34,16 +32,17 @@ let render = {
     }
   },
 
-  signon: function(){
+  welcome: function (response) {
     const message = response.message;
     const createItemButton =  '<button type="button" class="create-btn">Click Here! <br>List New Item</button>';
     $('.js-welcome').html(message).append(createItemButton);
   },
 
-  welcome: function (response) {
+  introduction: function (response) {
     const message = response.message;
-    const createItemButton =  '<button type="button" class="create-btn">Click Here! <br>List New Item</button>';
-    $('.js-welcome').html(message).append(createItemButton);
+    const introText = '<div class=".js-intro-text">Your online source for sharing, giving away and selling your stuff to your community members </div>';
+    const startButton = '<button type="button" class="start-btn">Start Demo!</button>';
+    $('.js-welcome').html(message).append(introText).append(startButton);
   },
 
   userContextSwitcher: function(){
@@ -155,4 +154,6 @@ let render = {
 $(() =>{
   //Do stuff here e.g. call api.welcome()
   render.view();
+  api.listUsers();
+  render.userContextSwitcher();
 });

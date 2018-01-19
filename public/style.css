@@ -110,7 +110,8 @@ header{
   }
 
   
-  .create-btn {
+  .create-btn,
+  .start-btn {
     margin-top: 20px;
     width: 150px;
     height: 60px;
@@ -127,9 +128,12 @@ header{
     border-radius: .25rem;
   }
 
-  .create-btn:hover {
+  .create-btn:hover,
+  .start-btn:hover {
     background-color: rgb(250, 155, 31);
   }
+
+
   
   form {
     width: auto;
