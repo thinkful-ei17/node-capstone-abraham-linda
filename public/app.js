@@ -21,6 +21,9 @@
 //on document ready bind events
 jQuery(function ($) {
 
+  // This wires the Signon "Start Demo" button
+  $('.js-welcome').on('click', '.start-btn', handle.welcome);
+
   // This wires the Create "List new Item" button
   $('.js-welcome').on('click', '.create-btn', handle.create);
 

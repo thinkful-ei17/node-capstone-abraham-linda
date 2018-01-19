@@ -15,14 +15,20 @@
 let render = {
 
   view: function(id=null) {
-    if(STORE.view === 'list') {
+    switch(STORE.view) {
+      case 'signon':
+      api.welcome().then(response => render.introduction(response));
+      break;
+      case 'list':
+      api.welcome().then(response => render.welcome(response))
       api.listItems().then(response => this.listItems(response));
-    }
-    if(STORE.view === 'create') {
+      break;
+      case 'create':
       this.createItem();
-    }
-    if(STORE.view === 'edit') {
+      break;
+      case 'edit':
       this.editItem(id);
+      break;
     }
   },
 
@@ -30,6 +36,13 @@ let render = {
     const message = response.message;
     const createItemButton =  '<button type="button" class="create-btn">Click Here! <br>List New Item</button>';
     $('.js-welcome').html(message).append(createItemButton);
+  },
+
+  introduction: function (response) {
+    const message = response.message;
+    const introText = '<div class=".js-intro-text">Your online source for sharing, giving away and selling your stuff to your community members </div>';
+    const startButton = '<button type="button" class="start-btn">Start Demo!</button>';
+    $('.js-welcome').html(message).append(introText).append(startButton);
   },
 
   userContextSwitcher: function(){
@@ -140,8 +153,7 @@ let render = {
 
 $(() =>{
   //Do stuff here e.g. call api.welcome()
-  api.welcome().then(response => render.welcome(response));
+  render.view();
   api.listUsers();
   render.userContextSwitcher();
-  render.view();
 });

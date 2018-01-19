@@ -3,6 +3,12 @@
 'use strict';
 
 let handle = {
+
+  welcome: function(event) {
+    event.preventDefault();
+    STORE.view = 'list';
+    render.view();
+  },
   
   create: function(event) {
     event.preventDefault();
