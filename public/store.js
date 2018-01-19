@@ -2,6 +2,7 @@
 
 
 const STORE = {
-  view: 'list',       // current view: list | create | edit 
+  view: 'login',       // current view: list | create | edit 
   currentUser: 'Alice A.',  //current user account
+  sessionToken: null,
 };
