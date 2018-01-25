@@ -25,7 +25,7 @@
 ---
 Online resource where members of a given community can loan, give away or sell their items all while encouraging interaction to get to know your neighbors.
 
-![main page screenshot](./screenshots/listinghomepage.png)
+![main page screenshot](node-capstone-abraham-linda/screenshots/listinghomepage.png)
 
 ---
 ## Key Features
