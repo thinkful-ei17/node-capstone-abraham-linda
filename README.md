@@ -65,7 +65,7 @@ $ npm install
 $ mongod
 
 # Seed data locally
-$ mongoimport --db sharing-is-caring --collection items --drop --file ~/items/v1/primer.itemdataset.json
+$ mongoimport --db sharing-is-caring --collection items --drop --file ~/items/v1/primer-itemdataset.json
 
 # Run the app
 $ npm start
