@@ -7,13 +7,13 @@
 <h4 align="center">Connecting you locally one small step at a time.</h4>
 
 <p align="center">
-    <a href="#Key Features">Key Features</a> •
-    <a href="#Setup">Setup</a> •
-    <a href="#Usage">Usage</a> •
-    <a href="#Screenshots">Screenshots</a> •
-    <a href="#Documentation">Documentation</a> •
-    <a href="#History">History</a> •
-    <a href="#Technology Stack/Credits">Technology Stack/Credits</a> •
+    <a href="#key-features">Key Features</a> •
+    <a href="#setup">Setup</a> •
+    <a href="#usage">Usage</a> •
+    <a href="#screenshots">Screenshots</a> •
+    <a href="#documentation">Documentation</a> •
+    <a href="#history">History</a> •
+    <a href="#technology-stack-credits">Technology Stack Credits</a> •
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@
 ---
 Online resource where members of a given community can loan, give away or sell their items all while encouraging interaction to get to know your neighbors.
 
-![main page screenshot](node-capstone-abraham-linda/screenshots/listinghomepage.png)
+![homepage screenshot](./screenshots/listinghome.png)
 
 ---
 ## Key Features
@@ -84,7 +84,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
   <br>
 </h3>
 
-![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/borrowitem.png)
+![borrow screenshot](./screenshots/borrowitem.png)
 
 <h3 align="center">
   <br>
@@ -92,7 +92,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
   <br>
 </h3>
 
-![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/returnitem.png)
+![return screenshot](./screenshots/returnitem.png)
 
 <h3 align="center">
   <br>
@@ -100,7 +100,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
   <br>
 </h3>
 
-![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/additem.png)
+![add item screenshot](./screenshots/additem.png)
 
 <h3 align="center">
   <br>
@@ -108,7 +108,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
   <br>
 </h3>
 
-![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/edititem.png)
+![edit item screenshot](./screenshots/edititem.png)
 
 <h3 align="center">
   <br>
@@ -116,7 +116,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
   <br>
 </h3>
 
-![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/delete.png)
+![delete item screenshot](./screenshots/delete.png)
 
 <h3 align="center">
   <br>
@@ -124,7 +124,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
   <br>
 </h3>
 
-![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/actitem.png)
+![claim item screenshot](./screenshots/actitem.png)
 
 ---
 ## Documentation
@@ -164,6 +164,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
 
 ---
 ## History
+* 0.11.0 - Update README
 * 0.10.0 - Add landing page for demo
 * 0.9.0 - Update tests to include return, edit and claim functionality
 * 0.8.1 - Add additional css styling to buttons
@@ -178,7 +179,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
 * 0.1.0 - Initial release
 
 ---
-## Technology Stack/Credits
+## Technology Stack Credits
 This software uses code from several open source packages.
 
 Front-end technologies
