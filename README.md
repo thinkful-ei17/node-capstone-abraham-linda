@@ -116,7 +116,7 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
   <br>
 </h3>
 
-![delete item screenshot](./screenshots/delete.png)
+![delete item screenshot](./screenshots/deleteitem.png)
 
 <h3 align="center">
   <br>
