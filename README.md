@@ -78,6 +78,13 @@ Once the dependencies are installed, run an instance of mongod and seed data loc
 
 ---
 ## Screenshots
+<h3 align="center">
+  <br>
+  Borrow item
+  <br>
+</h3>
+
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/borrowitem.png)
 
 <h3 align="center">
   <br>
