@@ -33,7 +33,7 @@ Online resource where members of a given community can loan, give away or sell t
 + Give away any item to those who need it
 + Sell your items to make an extra buck or support local community charities
 + Borrow a needed item from available community resources
-    - Check in avaialble community resources
+    - Check in available community resources
     - Check out available community resources
 + Add a new item
     - Submit a new item
