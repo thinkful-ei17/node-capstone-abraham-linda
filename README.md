@@ -23,7 +23,7 @@
 </p>   
 
 ---
-Web application to facilitate local community connectivity by enabling users to share, give away and sell items to other local community members.
+Online resource where members of a given community can loan, give away or sell their items all while encouraging interaction to get to know your neighbors.
 
 ![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/listinghomepage.png)
 
