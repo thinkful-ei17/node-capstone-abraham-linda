@@ -1,287 +1,215 @@
-[![Build Status](https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda.svg?branch=master)](https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda)
+<h1 align="center">
+  <br>
+  Sharing is Caring
+  <br>
+</h1>
 
-##Files
-- (client) app.js > user performs action (ie. click) > executes (!)handle callback
-- (client) handle.js > executes (!)fetch, receives returned promise from fetch, modifies STORE (ie. STORE.view), and executes (!)render > 
-- (client) fetch.js > calls server (!)router, retrieves data, and returns promise >
-- (client) render.js > inject HTML
-- (client) index.html and style.css - structure and style application
-- (BE) router.js > CRUD req and res > returns promise
-- (BE) model.js > schema and instance method (serialize)
-- (BE) primer-itemdataset.json > primer/seed data
-- (BE) server.js > run and close server, designate router file
-- (BE) config.js > configure database
+<h4 align="center">Connecting you locally one small step at a time.</h4>
 
-## Endpoints
+<p align="center">
+    <a href="#Key Features">Key Features</a> •
+    <a href="#Setup">Setup</a> •
+    <a href="#Usage">Usage</a> •
+    <a href="#Screenshots">Screenshots</a> •
+    <a href="#Documentation">Documentation</a> •
+    <a href="#History">History</a> •
+    <a href="#Technology Stack/Credits">Technology Stack/Credits</a> •
+</p>
 
-| Method | Endpoint | Description |
-|--|--|--|
-| GET | /item | Lists all items |
-| GET | /item/:id | Single item detail |
-| POST| /item | Creates a new item |
-| PUT | /item | Updates an item |
-| DELETE | /item/:id | Deletes an item |
+<p align="center">
+    <a href="https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda">
+        <img src="https://travis-ci.org/thinkful-ei17/node-capstone-abraham-linda.svg?branch=master" alt="Build Status">
+    </a>
+</p>   
 
-## Mock Objects
+---
+Web application to facilitate local community connectivity by enabling users to share, give away and sell items to other local community members.
 
-```js
-item = {
-"name":'Lawn Mower',
-"image":'img.jpg',
-"type": 'Loan',
-"description":'Brand new Lawn mower sitting in my garage collecting dust. Now that I have astro-truf. Go ahead and borrow it if you need it! - Alice',
-"postedBy": 'Alice A.'
-"acceptedBy": 'Charlie C.'
-"status":'On Loan'
-};
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/listinghomepage.png)
+
+---
+## Key Features
++ Share items by offering them up for loan
++ Give away any item to those who need it
++ Sell your items to make an extra buck or support local community charities
++ Borrow a needed item from available community resources
+    - Check in avaialble community resources
+    - Check out available community resources
++ Add a new item
+    - Submit a new item
+    - Cancel option to list new item
++ Edit an existing item you list
+    - Submit edits made to an existing item
+    - Cancel option to edit
++ Delete an existing item you list
++ Choose to borrow an item, claim a free item, or purchase an item 
+
+---
+## Setup
+
+To clone and run this application, you'll need [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)), [MongoDB](https://www.mongodb.com/download-center#atlas) installed on your computer. 
+
+From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/thinkful-ei17/node-capstone-abraham-linda
+
+# Go into the repository
+$ cd node-capston-abraham-linda
+
+# Install dependencies
+$ npm install
+
+# Run mongod instance on localhost (Seperate Terminal)
+$ mongod
+
+# Seed data locally
+$ mongoimport --db sharing-is-caring --collection items --drop --file ~/items/v1/primer.itemdataset.json
+
+# Run the app
+$ npm start
 ```
+---
+## Usage
+After you clone this repo to your desktop, go to its root directory and run npm install to install its dependencies.
 
-> Note: Add Dropdown selecting populated by a STORE.users array which can be used to set STORE.currentUser and this can simulate interaction.
+Once the dependencies are installed, run an instance of mongod and seed data locally. Then, you can run npm start to start the application. You will be able to access it at localhost:8080
 
-```js
-const users = ['Alice', 'Bob','Charlie'];
-store = {
-  'currentUser': 'Alice A.'
-}
-```
+---
+## Screenshots
+<h3 align="center">
+  <br>
+  Borrow item
+  <br>
+</h3>
 
-- A single item object lists the poster and user who purchased/claimed item
-- An endpoint should exist (or querystring) that allows for filtering 
-- An endpoint should exist (or querystring) that displays the postedBy for a single user
-- An endpoint should exist (or querystring) that displays the acceptedBy for a single user
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/borrowitem.png)
 
-## TODO
+<h3 align="center">
+  <br>
+  Return item
+  <br>
+</h3>
 
-1. [x] Update User Stories
-2. [x] npm init
-3. [x] install packages
-4. [x] create server.js
-5. [x] create config.js
-6. [x] .env file for environment variables
-7. [x] create item folder (for feature
-    - [x] model.js
-    - [x] router.js
-    - [x] test.js
-8. [x] create public folder with client-side js
-    - [x] app.js (client side js)
-    - [x] fetch.js
-    - [x] index.html
-    - [x] style.css
-    - [x] store.js 
-    - [x] render.js
-    - [x] handle.js
-9. [x] create seed data
-    {"name": "", "type": "", "description": "", "postedBy": "", "acceptedBy": "", "status": ""}
-10. [x] Set-up template for HTML
-11. [x] Add User Context Switcher for testing user functions.
-12. [x] Add 'Create' Route for adding a new item (API)
-13. [x] Add 'Update' Route for editing an existing item (API) 
-14. [x] Add 'Update/AcceptedBy' method (api)  `/api/v1/item/:id/:acceptedBy` (Linda)
-15. [x] Add 'Update/Return' method (api)  `/api/v1/item/:id/?returned=true` (Linda)
-16. [x] Add 'Delete' Route for delete an existing item (API) `/api/v1/item/:id`
-17. [x] Add View for Creation screen (Client)
-18. [x] Add View for Edit screen  (Client)
-19. [x] Add "Action" button functions for "Borrow, Claim, Make Offer" ", etc (Client) (Linda)
-20. [x] Fix - next is used with middleware therefore not needed; updated to have error msgs. (Abe)
-21. [x] Add 'Cancel' Button to 'Create' Page
-22. [x] Go through code and add error catches (Linda)
-23. [x] Fix mvp - user render on change
-24. [x] Add 'Delete' Button to 'List' Page
-25. [x] Add 'Edit' Button to 'List' Page
-26. [x] Add 'Submit' Button to 'Create' Page
-27. [x] Add 'Submit' Button to 'Edit' Page
-28. [x] Add logic to hide button if PostedBy is equal to currentUser
-29. [x] Add logic to disable buttons for items that are 'Purchased, Claimed, or On Loan' status (Linda)
-30. [ ] Stretch - Add user collection and update user contextswitcher to use user db
-31. [ ] more a11y friendly (Abe)
-32. [x] update image to accept user image provided rather than default (Abe)
-33. [ ] update and add tests! (Abe) (Linda)
-34. [x] update seedData on mLab (missing '.')
-35. [ ] css cleanup (ex. new item submit button not inline with cancel button) (Abe)(Linda)
-36. [x] general housekeeping (Abe)(Linda)
-37. [ ] second pass at general housekeeping (Abe)(Linda)
-38. [x] create/edit presentation slides (Abe)(Linda)
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/returnitem.png)
 
-#Future Features/Extensions
-1. Ability to flag a broken item borrowed (ie. Bob B. borrows Alice A. patio charis, they broke so Alice A. and/or Bob B. has ability to flag as broken) 
-2. Search function
-3. Filter/Sort function
-4. Comment function
+<h3 align="center">
+  <br>
+  Add item
+  <br>
+</h3>
 
-#Pain Points
-1. be cautious with referencing older code because no set pattern ex. syntax can change with different version dependencies (libraries). Ex. test -should vs. shouldOf; should vs. accept; fetch headers vs. New Headers
-2. Don't forget to keep your promises. :) (promises are important!)
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/additem.png)
 
-#Lessons Learned
-1. Refer to latest documentation
-2. Despite how much planning you do, stuff will still not run smoothly; however, do plan - you end up dealing with mole hill rather than a mountain.
-3. Understand which database you want to work with and why one works better than another option
-4. Time Management - rule of thumb: task X by Pi
-5. Start out with proper understanding of MVP 
-6. Approach - everyday is demoable
+<h3 align="center">
+  <br>
+  Edit item
+  <br>
+</h3>
 
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/edititem.png)
 
-#User Stories
-As a x I want to do y
-1. Sign-up for access (not building out for now)
-2. Log-in (not building out for now)
-3. upon first loading the app, I can see Resource Sharing listing (all)
-4. User - Post
-    1. User has create button, once clicked, change view to post creation (input - item, description, type)
-    2. User has submit button, once clicked, change view to main page, now can see new item added to top of the page
-    3. New Item has Delete button and Edit button on main page (only renders, if currentUser is the same as id of person who posted)
-        -forEach: render list if posted by user === current user, then you can render delete and edit button, api call to item/id with delete, api call to change view to post creation populated with posting info
-    4. Based on type of item:
-        1. SELL
-            a. Poster - "View Offer" button - see all comments people left between indiv posters/users (future)
-                - Also has "Edit" and "Delete" button
-            b. Viewer - "Make Offer" button - Add 1 way comment for now
-        2. LOAN 
-            a. Poster - View status, no button
-                 - Also has "Edit" and "Delete" button
-            b. Viewer - "Borrow" button - Once clicked, tied to ID and no other user can borrow
-            a/b. Both can click "Return button" which will clear out acceptedBy (null) and change status - reverts back to Loan buttons
-        3. FREE   
-            a. Poster - View status, no button
-                - Also has "Edit" and "Delete" button
-            b. Viewer - "Claim" button - Once clicked, tied to ID and no other user can claim
+<h3 align="center">
+  <br>
+  Delete item
+  <br>
+</h3>
 
-#LOGIC
-"postedBy": 'Alice A.'
-"acceptedBy": 'Charlie C.'
-"type": 'Loan',
-"status":'On Loan'
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/delete.png)
 
-1. if Type = "Sell"
-IF status = "Make Offer" (Available)
-IF status = "Purchased" (No longer available)
+<h3 align="center">
+  <br>
+  Borrow/Buy/Claim item
+  <br>
+</h3>
 
-2. if Type = "Free"
-IF status = "Claim" (Available)
-IF status = "Claimed" (no longer available)
+![screenshot](https://raw.githubusercontent.com/thinkful-e17/node-capstone-abraham-linda/master/screenshots/actitem.png)
 
-3. If Type = "Loan"
-IF status = "Borrow" (Available)
-IF status = "On Loan" (no longer available)
+---
+## Documentation
+#### Model
 
-------
-For User Poster and Claimer - another button to "Return" (future build)
+* `item` The Item object models the resources in the Items database for REST API.
+  * `name` {string} Name of item posted
+  * `image` {string} Display icon of image provided by user or default to random icon.
+  * `type` {string} Designate what type of transaction category. Either `'Sell'`, `'Loan'`, or `'Free'`.
+  * `description` {string} Description of item posted
+  * `postedBy` {string} Capture the user who posted the item
+  * `acceptedBy` {string} Capture the user who receives the item 
+  * `type` {string} Designate what type of transaction sub-category. Either `'Make Offer'`, `'Purchased'`, `'Claim'`, `'Claimed'`, `'Borrow'`, or `'On Loan'`.
 
+#### Events
 
-#PSEUDO-CODE LOGIC
+* `welcome` When a user acceses the application.
+* `create` When a user wants to create an item.
+* `addItem` When a user creates an item.
+* `cancelOption` When a user chooses to not create an item or edit an item.
+* `edit` When a user wants to edit an item.
+* `editItem` When a user edits an item.
+* `claimItem` When a user wants to receive an item.
+* `returnItem` When a user wants to check-in (return) an item.
+* `delete` When a user deletes an item.
 
-To avoid postedBy and acceptedBy being the same user:
-Render function use array.filter(item.postedBy !== STORE.currentUser)  >>>drives all other buttons (incl "Return", except for "Edit", "Delete"
-array.filter(item.postedBy === STORE.currentUser) >>> get "Edit" and "Delete" includes "Return" button
+#### REST API
 
-// item object
+* `welcome()`Loads application 
+* `listItems()`Gets all the items in the Items database
+* `listItem(id)` Gets an item in the Items database by id
+* `createItem(newItem)` Creates a new item to the Items database
+* `editItem(editedDocument)` Updates an existing item in the Items database
+* `claimItem(claimDocument)` Updates an existing item in the Items database to designate the recipient of an item
+* `returnItem(returnDocument)` Updates an existing item in the Items database to remove the recipient of an item and make item available again
+* `deleteItem(id)` Deletes an existing item in the Items database
 
-switch(item.type){
-  case "Loan":
-    validStatuses = ["Borrow", "On Loan"] // renders text in button
-    if item.status = "Borrow", render button
-    if item.status = "On Loan", disable button
-  break;
-  case "Sell":
-    validStatuses = ["Make Offer", "Purchased"];
-    if item.status = "Make Offer", render button 
-    if item.status = "Purchased" disable button
-  break;
-  case "Free":
-    validStatuses = ["Claim","Claimed"];
-    if item.status === "claim" render a button to claim 
-    if item.status === "Claimed" disable button
-  break;
-}
+---
+## History
+* 0.10.0 - Add landing page for demo
+* 0.9.0 - Update tests to include return, edit and claim functionality
+* 0.8.1 - Add additional css styling to buttons
+* 0.8.0 - Add additional css styling to list, create, and edit page
+* 0.7.1 - Fix race condition of action buttons
+* 0.7.0 - Add button functionality for returning items
+* 0.6.0 - Add sort by descending for items listing
+* 0.5.4 - Add button functionality for claiming items
+* 0.4.0 - Update tests for CRUD
+* 0.3.0 - Update images field to use provided image link or placeholder
+* 0.2.0 - Fix `next` issue
+* 0.1.0 - Initial release
 
-renderView()
+---
+## Technology Stack/Credits
+This software uses code from several open source packages.
 
-return `
-<div>
-if 
-<button disable name=${item.status}>${item.status}</button>
-</div>
-`
-#MVP Requirements
-1. [x] Create a client
-2. [x] Serve static files (ex. image, logo)
-3. [x] Implement REST API w/CRUD operations
-4. [x] Comprehensive Test for API layer (required: positive, optional: negative)
-5. [x] Use Continuous Integration (Travis CI and Heroku)
-6. [x] Use mongo for db
+Front-end technologies
++ ES6 JavaScript
++ [jQuery](https://jquery.com/)
++ CSS media queries
 
+Server technologies
++ [Express](http://expressjs.com/)
++ [bcryptjs](https://www.npmjs.com/package/bcryptjs)
++ [jsonwebtoken](https://jwt.io/)
++ [passport.js](http://www.passportjs.org/)
 
-#####----BELOW----Other notes from initial planning----BELOW----#####
-#Questions
-1. Best approach to start implementation: 
-    1) build working client with dummy data OR 
-    2) build working API, then client ANSWER: Backend first!
-2. if using Mongoose, what are options for relationships/linking related collections: 
-    1) (1 to few) Seen - subdocuments array of objects inside user/resource object (not best for all jobs), good for user with 1-50 items. There is a limit to the size of a single mongo object (~16mb) Upside: Faster OR 
-    2) (Many to Many) - in between - ex. user has array in it and in the array are a bunch of ids referencing collection; instead of document on user, put reference / "array of references/ids" OR 
-    3) (1 to scillions) - like postgres - user associated scillions (ex. messages, chat app), all messages have property that points to id of owner UPSIDE: Quantity
-    HELPFUL LINK: https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1
+Data Persistence
++ [MongoDB](https://www.mongodb.com/)
++ [Mongoose](http://mongoosejs.com/)
 
-#####----BELOW----ASPIRING APPLICATION----BELOW----#####
+​Hosting/SaaS
++ [Heroku](https://dashboard.heroku.com/)
++ [MLab](https://mlab.com/)
 
-#User Story
-Single Apt/Community - structure to support future scalability, stick to users only (CM another time)
-Application/Feature: Resource Sharing (list, comment, check-in/out)
-button item check out > click > userID creates user to borrower relationship and flag for checked out status
-Checkin > click userwithvalid ID > 
+Development Environment
++ Continuous Integration and Deployment
+    - [Travis CI](https://travis-ci.org/) / [Heroku](https://dashboard.heroku.com/)
++ [Github](https://github.com/) (branching, pull requests, merging)
++ [VS Code](https://code.visualstudio.com/)
++ [Node.js](https://nodejs.org/) Libraries
+    - [Mocha.js](https://mochajs.org/)
+    - [Chai / Chai HTTP](http://chaijs.com/)
+    - [Nodemon](https://nodemon.io/)
+    - [faker](https://www.npmjs.com/package/Faker)
+    - [dotenv](https://www.npmjs.com/package/dotenv)
 
-As a x I want to do y
-+ Community Manager - sign up to account to manage my community
-+ Community Manager - approve each resident that signs up for my community (FF)
-+ Community Manager - broadcast important alerts to my community
-+ Community Manager - administrator rights (FF)
-+ Community Manager - approve vendors for advertising (FF)
-+ Community Manager - manage rent payment transactions(FF)
-
-+ User - sign up to account
-+ User - once approved, set-up profile (face (required), name (required), aboutme, profession (optional), resource share items (optional))
-+ User - HOME - sees CM alert section, access point to community board, access point to resource sharing board
-+ User - accesess community board
-+ User - add post to community board
-+ User - delete own post on community board
-+ User - see old community board posts
-
-#Features
-Resource Sharing - Free stuff, borrowing items, rideshare (board and in user profile(future feature))
-Community Message Board - general message (open to all users), ability to post, delete, update, comment
-Alert Board - Broadcast message (only community manager); 
-
-#Mockup
-4 users 
-1 - community manager (paid)
-2 - resident (unpaid)
-3 - resident
-4 - resident
-
-CREATE TABLE Users(
-id serial primary key,
-username text not null,
-email text not null,
-profileimage text not null,
-community_id int references community(id)
-password
-firstName
-lastName
-)
-
-user_resource
-
-borrower_id, resource_id, owner_id
-
-#Future Feature/Extensions
-- Community Manager - approve each resident that signs up for my community
-- Security - only community manager can provide final approval of new resident +access to application
-- Location
-- Additional Access - Guests (request parking) and Vendor Accounts +(advertisement/specials)
-- Expansion - Neighborhood/Complex(!)>District>City>State
-- Rent Payment (more secure than other alternatives, cost less to process?)
-- Community Manager access to administrative actions (delete posts, etc.)
-- User to User communication
-- User to Group Selected communication
-- Community Manager to User communication
-- Community Manager to Group Selected communication
+---
