@@ -25,7 +25,7 @@
 ---
 Online resource where members of a given community can loan, give away or sell their items all while encouraging interaction to get to know your neighbors.
 
-![screenshot](https://github.com/thinkful-ei17/node-capstone-abraham-linda/blob/master/screenshots/listinghomepage.png)
+![main page screenshot](./screenshots/listinghomepage.png)
 
 ---
 ## Key Features
