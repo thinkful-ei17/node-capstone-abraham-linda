@@ -18,8 +18,8 @@
  * 
  */
 
-//on document ready bind events
-jQuery(function ($) {
+//on document ready bind events 
+jQuery(function ($) { //RN: can use $ (more common) instead of jQuery
 
   // This wires the Signon "Start Demo" button
   $('.js-welcome').on('click', '.start-btn', handle.welcome);
@@ -72,3 +72,5 @@ jQuery(function ($) {
   });
 
 }); 
+
+//RN: Document ready init at bottom!

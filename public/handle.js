@@ -2,7 +2,7 @@
 
 'use strict';
 
-let handle = {
+let handle = { //RN: can be const
 
   welcome: function(event) {
     event.preventDefault();
@@ -87,7 +87,7 @@ let handle = {
 
   returnItem: function(event, id){
     event.preventDefault();
-    const el = $(event.target);
+    const el = $(event.target); //RN: $el signal
     let returnDocument;
     returnDocument = {id: id, acceptedBy: STORE.currentUser};
 

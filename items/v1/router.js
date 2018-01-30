@@ -11,7 +11,7 @@ router.use(jsonParser);
 
 mongoose.Promise = global.Promise;
 
-let items; 
+let items; //RN: take out 
 
 //GET (Read) method endpoint '/items'
 //finds and returns all documents that are a part of Items db
@@ -82,7 +82,7 @@ router.post('/items', jsonParser, (req, res) => {
     .then(item => {
       if (item) {
         res.location(`http://${req.headers.host}/items/${item.id}`).status(201).json(item); //201 handler
-      }
+      } //RN: possibly mashing styles by using res.location only here; maybe return value (more valuable info)
     })
     .catch(err => console.error(`Error: ${err.message}`)); //error handler
 });
@@ -110,8 +110,8 @@ router.put('/items/return/:id', (req, res) => {
   Item.findById(id)
   .then(item => {
     if ((item.type === 'Loan') && (item.status === 'On Loan')) {
-      let acceptedBy = null;
-      let status = 'Borrow';
+      let acceptedBy = null; //RN: const; can just pass directly - only one instance (rot)
+      let status = 'Borrow'; //RN: const; can just pass directly - only one instance (rot)
         Item.findByIdAndUpdate(id, {acceptedBy: acceptedBy, status: status})
         .then(() => res.status(204).end()) //204 handler
         .catch(err => console.error(`Error: ${err.message}`)); //error handler
@@ -167,14 +167,14 @@ router.put('/items/claim/:id', (req, res) => {
 
   switch(type){
     case 'Free':
-    status = 'Claimed'
-    break;
+      status = 'Claimed'
+      break;
     case 'Loan':
-    status = 'On Loan'
-    break;
+     status = 'On Loan'
+      break;
     case 'Sell':
-    status = 'Purchased'
-    break;
+      status = 'Purchased'
+      break;
   }
 
     Item.findByIdAndUpdate(id, {acceptedBy: user, status: status})

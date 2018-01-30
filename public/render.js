@@ -12,34 +12,34 @@
  * 
  */
 
-let render = {
+let render = { //RN: const
 
   view: function(id=null) {
-    switch(STORE.view) {
+    switch(STORE.view) { //RN: indent
       case 'signon':
-      api.welcome().then(response => render.introduction(response));
-      break;
+        api.welcome().then(response => render.introduction(response));
+        break;
       case 'list':
-      api.welcome().then(response => render.welcome(response))
-      api.listItems().then(response => this.listItems(response));
-      break;
+        api.welcome().then(response => render.welcome(response))
+        api.listItems().then(response => this.listItems(response));
+        break;
       case 'create':
-      this.createItem();
-      break;
+        this.createItem();
+        break;
       case 'edit':
-      this.editItem(id);
-      break;
+        this.editItem(id);
+        break;
     }
   },
 
   welcome: function (response) {
-    const message = response.message;
+    const message = response.message; //RN: just put rsponse.message in html - save yourself a line; variable only for something you need more than once (rot)
     const createItemButton =  '<button type="button" class="create-btn">Click Here! <br>List New Item</button>';
     $('.js-welcome').html(message).append(createItemButton);
   },
 
   introduction: function (response) {
-    const message = response.message;
+    const message = response.message;//RN: just put rsponse.message in html - save yourself a line; variable only for something you need more than once (rot)
     const introText = '<div class=".js-intro-text">Your online source for sharing, giving away and selling your stuff to your community members </div>';
     const startButton = '<button type="button" class="start-btn">Start Demo!</button>';
     $('.js-welcome').html(message).append(introText).append(startButton);
@@ -54,15 +54,22 @@ let render = {
     });
 
    //append userOptions to select element
-    let selectEl = '<select class="user">';
+    let selectEl = '<select class="user">'; //RN: const, use reduce - takes an array - gives more options
     userOptions.forEach(u => selectEl += u);
     selectEl += '</select>';
+
+    //RN!!!!!!!
+    const renderString = usersList.reduce(function (str,user) {
+      return str + `<option>${user}</option>`
+    }, selectEl).concat('</select>')
+    
+    console.log('what is renderString',renderString);
 
     // inject select element to div
     $('.js-mvp-user').html(selectEl);
   },
   
-  listItems: function (items) {
+  listItems: function (items) { //RN: break out terniary into variable function
     const item = items.map(item => {
       return `
       <div class="listing">
@@ -89,9 +96,9 @@ let render = {
     $('.js-view').html(item);
   },
 
-  _renderForm: function(className, id = null){
+  _renderForm: function(className, id = null){ //RN: break pieces into function 125-127 lines
     /**
-     * These should come from a possible endpoint listing valid combinations
+     * These should come from a possible endpoint listing valid combinations, put invokation of function - only 1 html template and putting slices where needed
      * of 
      */
     const typeList = ['Sell', 'Loan', 'Free']; 
@@ -142,7 +149,7 @@ let render = {
   editItem: function(item) {
     const editTemplate = this._renderForm('edit', item._id);
 
-    $('.js-view').html(editTemplate);
+    $('.js-view').html(editTemplate); //RN: issue directly going to DOM (expensive), extract value once and use find $el
     $('.js-view > form#edit').find('.js-title').val(item.name);
     $('.js-view > form#edit').find('.js-image').val(item.image);
     $('.js-view > form#edit .js-type option[value='+item.type+']').attr('selected', 'true');
@@ -151,7 +158,7 @@ let render = {
 
 };
 
-$(() =>{
+$(() =>{ //RN: looking for consistency
   //Do stuff here e.g. call api.welcome()
   render.view();
   api.listUsers();

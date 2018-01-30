@@ -13,7 +13,7 @@
  */
 
 function buildUrl(path, query) {
-  var url = new URL(path, window.location.origin);
+  var url = new URL(path, window.location.origin); //RN: do not use var! - const instead
   if (query) {
     Object.keys(query).forEach(key => url.searchParams.append(key, query[key]));
   }
@@ -38,7 +38,7 @@ function normalizeResponseErrors(res) {
   return res;
 }
 
-let api = {
+let api = { //RN: prob ok as const - check again; default const (cannot change type)
 
   welcome: function () {
     const url = buildUrl('/api/v1');
@@ -54,7 +54,7 @@ let api = {
   listUsers: function(){
     // This may be replaced with a users db collection if time permits
     const users  = ['Alice A.', 'Bob B.', 'Charlie C.', 'David D.'];
-    return users;
+    return users; //RN: can return on same line
   },
 
   listItems: function () {
