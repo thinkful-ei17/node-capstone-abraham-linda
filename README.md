@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  Sharing is Caring
+  Commonly
   <br>
 </h1>
 
