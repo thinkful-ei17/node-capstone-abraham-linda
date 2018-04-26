@@ -55,6 +55,11 @@ button{
   cursor: pointer;
 }
 
+a.github-link{
+  text-decoration: none;
+  color: black;
+}
+
 @media only screen and (min-width: 320px) {
 
   body {
@@ -221,11 +226,11 @@ header{
   }
 
   footer{
-    color: #b3e5fc;
+    color: white;
     background-color: #0288d1;
-    font-family: 'Shrikhand', cursive;
+    font-family: 'Raleway';
     text-align: center;
-    font-weight: lighter;
+    font-weight: 200;
   }
 }
 
@@ -248,7 +253,6 @@ header{
 @media only screen and (min-width: 1024px) {
   .logo {
     text-align: center;
-    padding-left: 30px;
   }
 
   header,
