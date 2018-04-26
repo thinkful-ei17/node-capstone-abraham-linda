@@ -63,7 +63,7 @@ let render = { //RN: const
       return str + `<option>${user}</option>`
     }, selectEl).concat('</select>')
     
-    console.log('what is renderString',renderString);
+    //console.log('what is renderString',renderString);
 
     // inject select element to div
     $('.js-mvp-user').html(selectEl);
