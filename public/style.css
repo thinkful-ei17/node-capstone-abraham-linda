@@ -7,13 +7,61 @@
   box-sizing: border-box;
 }
 
+html, body{
+  overflow: auto;
+  background-color: #0288d2
+}
+
+header{
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: 5px;
+  min-width: 100%;
+}
+
+body{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  display: table;
+}
+
+.logo{
+  padding-top: 5px;
+}
+
+.js-intro-text{
+  margin-top: 15px;
+  margin-bottom: 15px; 
+}
+
+fieldset{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.listing{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+button{
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 320px) {
 
   body {
     font-family: 'Montserrat', sans-serif;
     color: #212121;
     background-color: #ffffff;
-    border-top: 20px solid #0288d1;
+    width: 95%;
   }
   
   .logo {
@@ -131,22 +179,6 @@ header{
   .start-btn:hover {
     background-color: rgb(250, 155, 31);
   }
-
-
-  
-  form {
-    width: auto;
-  }
-  .js-view-form {
-    /* margin-left: 0px;
-    margin-right: 0px;
-    width: 70%;
-    border: 2px solid black;
-    margin-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    padding-right: 10px; */
-  }
   
   .submit-edit-btn,
   .cancel-btn {
@@ -207,6 +239,10 @@ header{
    .actions button{  
     display: block;
   }
+
+  body{
+    width: 65%;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -218,9 +254,13 @@ header{
   header,
   main
   {
-    width: 1000px;
+    min-width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
 }
 
+footer p {
+  margin: 0;
+  padding: 0;
+}

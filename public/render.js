@@ -40,7 +40,7 @@ let render = { //RN: const
 
   introduction: function (response) {
     const message = response.message;//RN: just put rsponse.message in html - save yourself a line; variable only for something you need more than once (rot)
-    const introText = '<div class=".js-intro-text">Your online source for sharing, giving away and selling your stuff to your community members </div>';
+    const introText = '<div class="js-intro-text">Your online source for <br/> sharing, giving away and selling your stuff <br/> to members of your community. </div>';
     const startButton = '<button type="button" class="start-btn">Start Demo!</button>';
     $('.js-welcome').html(message).append(introText).append(startButton);
   },
